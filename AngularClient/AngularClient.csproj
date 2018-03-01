@@ -23,11 +23,6 @@
     <TypeScriptCompile Include="src\dev-all\misc.component.ts" />
     <TypeScriptCompile Include="src\dev-all\odata-resource-pool.component.ts" />
     <TypeScriptCompile Include="src\dev-all\odata-element.component.ts" />
-    <TypeScriptCompile Include="src\main\admin\admin.service.ts" />
-    <TypeScriptCompile Include="src\main\admin\admin-overview.component.ts" />
-    <TypeScriptCompile Include="src\main\admin\admin.module.ts" />
-    <TypeScriptCompile Include="src\main\admin\admin-guard.service.ts" />
-    <TypeScriptCompile Include="src\main\admin\resource-pools.component.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-role.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\role.ts" />
     <TypeScriptCompile Include="src\main\auth\auth-guard.service.ts" />
@@ -89,7 +84,6 @@
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-field.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user.ts" />
     <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.service.ts" />
-    <TypeScriptCompile Include="src\main\core\components\search.component.ts" />
     <TypeScriptCompile Include="src\main\auth\auth.service.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.module.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.service.ts" />
@@ -100,11 +94,6 @@
     <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.component.ts" />
     <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.module.ts" />
     <TypeScriptCompile Include="src\main\resource-pool-editor\symbolic.pipe.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool\element-manager.component.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool\resource-pool-create.component.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool\resource-pool-manager.component.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool\resource-pool-viewer.component.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool\resource-pool.module.ts" />
     <TypeScriptCompile Include="src\main\rxjs-extensions.ts" />
     <TypeScriptCompile Include="src\main\user\user.service.ts" />
     <TypeScriptCompile Include="src\main\user\profile.component.ts" />
@@ -136,8 +125,6 @@
     <Content Include="src\dev-all\misc.component.html" />
     <Content Include="src\dev-all\odata-resource-pool.component.html" />
     <Content Include="src\dev-all\odata-element.component.html" />
-    <Content Include="src\main\admin\admin-overview.component.html" />
-    <Content Include="src\main\admin\resource-pools.component.html" />
     <Content Include="src\_app_offline.htm" />
     <None Include="src\dev-all\Readme.md" />
     <None Include="src\dev-basic\Readme.md" />
@@ -179,15 +166,10 @@
     <Content Include="src\main\core\components\contributors.component.html" />
     <Content Include="src\main\core\components\home.component.html" />
     <Content Include="src\main\core\components\not-found.component.html" />
-    <Content Include="src\main\core\components\search.component.html" />
     <Content Include="src\main\ng-chart\ng-chart.component.css" />
     <Content Include="src\main\ng-chart\ng-chart.component.html" />
     <Content Include="src\main\resource-pool-editor\resource-pool-editor.component.css" />
     <Content Include="src\main\resource-pool-editor\resource-pool-editor.component.html" />
-    <Content Include="src\main\resource-pool\element-manager.component.html" />
-    <Content Include="src\main\resource-pool\resource-pool-create.component.html" />
-    <Content Include="src\main\resource-pool\resource-pool-manager.component.html" />
-    <Content Include="src\main\resource-pool\resource-pool-viewer.component.html" />
     <Content Include="src\main\user\profile.component.html" />
     <Content Include="src\styles.css" />
   </ItemGroup>

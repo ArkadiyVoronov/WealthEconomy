@@ -9,7 +9,6 @@ import { MomentModule } from "angular2-moment";
 import { ContributorsComponent } from "./components/contributors.component";
 import { HomeComponent } from "./components/home.component";
 import { NotFoundComponent } from "./components/not-found.component";
-import { SearchComponent } from "./components/search.component";
 
 import { AllInOneComponent } from "./components/all-in-one.component";
 import { BasicsComponent } from "./components/basics.component";
@@ -33,7 +32,6 @@ export { Angulartics2GoogleAnalytics, CanDeactivateGuard, DynamicTitleResolve }
 
 const coreRoutes: Routes = [
     { path: "", component: HomeComponent, data: { title: "Home" } },
-    { path: "app/search", component: SearchComponent, data: { title: "Search" } },
     { path: "app/contributors", component: ContributorsComponent, data: { title: "Contributors" } },
     { path: "app/not-found", component: NotFoundComponent, data: { title: "Not Found" } },
 
@@ -57,7 +55,6 @@ export function appInitializer(googleAnalyticsService: GoogleAnalyticsService) {
         ContributorsComponent,
         HomeComponent,
         NotFoundComponent,
-        SearchComponent,
 
         AllInOneComponent,
         BasicsComponent,

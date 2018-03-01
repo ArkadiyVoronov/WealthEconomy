@@ -3,8 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { MomentModule } from "angular2-moment";
-
-// Internal
 import "../rxjs-extensions";
 
 // Shared modules
@@ -21,8 +19,6 @@ import { CoreModule } from "../core/core.module";
 
 // Feature modules
 import { AccountModule } from "../account/account.module";
-import { AdminModule } from "../admin/admin.module";
-import { ResourcePoolModule } from "../resource-pool/resource-pool.module";
 import { UserModule } from "../user/user.module";
 
 // App component
@@ -53,8 +49,6 @@ import { AppComponent } from "./app.component";
 
         CoreModule,
         AccountModule,
-        AdminModule,
-        ResourcePoolModule, // Register ResourcePool & User modules as the last ones, because of "catch all" routes
         UserModule
     ],
     providers: [

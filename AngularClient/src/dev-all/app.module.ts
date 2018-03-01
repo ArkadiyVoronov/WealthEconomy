@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { MomentModule } from "angular2-moment";
 
-import { AdminModule } from "../main/admin/admin.module";
 import { AppEntityManagerModule } from "../main/app-entity-manager/app-entity-manager.module";
 import { AppErrorHandlerModule } from "../main/app-error-handler/app-error-handler.module";
 import { AppHttpModule } from "../main/app-http/app-http.module";
@@ -63,7 +62,6 @@ import { WebApiComponent } from "./web-api.component";
         AuthModule,
         NgChartModule,
         ResourcePoolEditorModule,
-        AdminModule,
 
         AppRouterModule
     ],
