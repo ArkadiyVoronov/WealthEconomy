@@ -4,19 +4,19 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
-import { IConfig as IResourcePoolEditorConfig, ResourcePoolEditorComponent } from "./resource-pool-editor.component";
-import { ResourcePoolEditorService } from "./resource-pool-editor.service";
+import { IConfig as IProjectViewerConfig, ProjectViewerComponent } from "./resource-pool-editor.component";
+import { ProjectService } from "./resource-pool-editor.service";
 import { SymbolicPipe } from "./symbolic.pipe";
 
-export { IResourcePoolEditorConfig, ResourcePoolEditorService }
+export { IProjectViewerConfig, ProjectService }
 
 @NgModule({
     declarations: [
-        ResourcePoolEditorComponent,
+        ProjectViewerComponent,
         SymbolicPipe
     ],
     exports: [
-        ResourcePoolEditorComponent,
+        ProjectViewerComponent,
         SymbolicPipe
     ],
     imports: [
@@ -27,7 +27,7 @@ export { IResourcePoolEditorConfig, ResourcePoolEditorService }
         NgChartModule
     ],
     providers: [
-        ResourcePoolEditorService
+        ProjectService
     ]
 })
-export class ResourcePoolEditorModule { }
+export class ProjectViewerModule { }

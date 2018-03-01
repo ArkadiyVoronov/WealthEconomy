@@ -21,7 +21,7 @@ import { ReasonComponent } from "./components/reason.component";
 import { TotalCostIndexComponent } from "./components/total-cost-index.component";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
-import { ResourcePoolEditorModule } from "../resource-pool-editor/resource-pool-editor.module";
+import { ProjectViewerModule } from "../resource-pool-editor/resource-pool-editor.module";
 
 // Services
 import { CanDeactivateGuard } from "./can-deactivate-guard.service";
@@ -77,7 +77,7 @@ export function appInitializer(googleAnalyticsService: GoogleAnalyticsService) {
         MomentModule,
 
         NgChartModule,
-        ResourcePoolEditorModule
+        ProjectViewerModule
     ],
     providers: [
         // Application initializer

@@ -1,7 +1,7 @@
 ﻿import { Component } from "@angular/core";
 
 import { ElementCell } from "../../app-entity-manager/entities/element-cell";
-import { IResourcePoolEditorConfig, ResourcePoolEditorService } from "../../resource-pool-editor/resource-pool-editor.module";
+import { IProjectViewerConfig, ProjectService } from "../../resource-pool-editor/resource-pool-editor.module";
 
 @Component({
     selector: "all-in-one",
@@ -9,13 +9,13 @@ import { IResourcePoolEditorConfig, ResourcePoolEditorService } from "../../reso
 })
 export class AllInOneComponent {
 
-    allInOneConfig: IResourcePoolEditorConfig = { resourcePoolUniqueKey: { username: "sample", resourcePoolKey: "All-in-One" } };
+    allInOneConfig: IProjectViewerConfig = { projectUniqueKey: { username: "sample", projectKey: "All-in-One" } };
     syncFlag: boolean = true;
 
-    constructor(private resourcePoolService: ResourcePoolEditorService) {
+    constructor(private projectService: ProjectService) {
 
         // Event handlers
-        resourcePoolService.elementCellDecimalValueUpdated$.subscribe((elementCell: ElementCell): void => this.processNewInteraction(elementCell));
+        projectService.elementCellDecimalValueUpdated$.subscribe((elementCell: ElementCell): void => this.processNewInteraction(elementCell));
     }
 
     // Processes whether the user is currently interacting with this example
@@ -27,7 +27,7 @@ export class AllInOneComponent {
                 || elementCell.ElementField.Element.Project.Key === "Knowledge-Index-Sample")
             && this.syncFlag) {
 
-            this.resourcePoolService.getResourcePoolExpanded(this.allInOneConfig.resourcePoolUniqueKey)
+            this.projectService.getProjectExpanded(this.allInOneConfig.projectUniqueKey)
                 .subscribe((project: any): void => {
 
                     if (!project) {
@@ -49,7 +49,7 @@ export class AllInOneComponent {
                                         const cell = elementField.ElementCellSet[elementCellIndex];
 
                                         if (cell.ElementItem.Name === elementCell.ElementItem.Name) {
-                                            this.resourcePoolService.updateElementCellDecimalValue(cell, elementCell.numericValue());
+                                            this.projectService.updateElementCellDecimalValue(cell, elementCell.numericValue());
                                             break;
                                         }
                                     }

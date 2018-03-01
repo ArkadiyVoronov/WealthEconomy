@@ -7,7 +7,7 @@ import { stripInvalidChars } from "../../shared/utils";
 
 export interface IUniqueKey {
     username: string;
-    resourcePoolKey: string;
+    projectKey: string;
 }
 
 export enum RatingMode {
@@ -89,7 +89,7 @@ export class Project extends EntityBase {
 
         return {
             username: this.User.UserName,
-            resourcePoolKey: this.Key
+            projectKey: this.Key
         };
     }
 

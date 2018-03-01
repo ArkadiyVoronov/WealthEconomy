@@ -10,13 +10,13 @@ import { AppHttpModule } from "../main/app-http/app-http.module";
 import { AuthModule } from "../main/auth/auth.module";
 import { LoggerModule } from "../main/logger/logger.module";
 import { NgChartModule } from "../main/ng-chart/ng-chart.module";
-import { ResourcePoolEditorModule } from "../main/resource-pool-editor/resource-pool-editor.module";
+import { ProjectViewerModule } from "../main/resource-pool-editor/resource-pool-editor.module";
 
 import { AppRouterModule } from "./app-router.module";
 import { AppComponent } from "./app.component";
 import { MiscComponent } from "./misc.component";
 import { NavigationComponent } from "./navigation.component";
-import { ResourcePoolTesterComponent } from "./resource-pool-tester.component";
+import { ProjectTesterComponent } from "./resource-pool-tester.component";
 
 @NgModule({
     bootstrap: [
@@ -26,7 +26,7 @@ import { ResourcePoolTesterComponent } from "./resource-pool-tester.component";
         AppComponent,
         MiscComponent,
         NavigationComponent,
-        ResourcePoolTesterComponent,
+        ProjectTesterComponent,
     ],
     imports: [
         // External
@@ -41,7 +41,7 @@ import { ResourcePoolTesterComponent } from "./resource-pool-tester.component";
         AppEntityManagerModule,
         AuthModule,
         NgChartModule,
-        ResourcePoolEditorModule,
+        ProjectViewerModule,
 
         AppRouterModule
     ],

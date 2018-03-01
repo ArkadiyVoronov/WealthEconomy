@@ -19,11 +19,6 @@
                             <br />
                             <small>Last modified on {{ project.ModifiedOn | date: 'medium' }}</small>
                         </p>
-                        <div class="pull-right">
-                            <button *ngIf="manageResourcePoolEnabled()" type="button" class="btn btn-link" (click)="manageResourcePool()">
-                                <i class="fa fa-pencil" aria-hidden="true"></i> Manage
-                            </button>
-                        </div>
                     </div>
                     <hr />
                     <div class="settings">

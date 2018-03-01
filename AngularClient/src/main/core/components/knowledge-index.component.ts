@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 
 import { ChartConfig, ChartDataItem } from "../../ng-chart/ng-chart.module";
-import { IResourcePoolEditorConfig, ResourcePoolEditorService } from "../../resource-pool-editor/resource-pool-editor.module";
+import { IProjectViewerConfig, ProjectService } from "../../resource-pool-editor/resource-pool-editor.module";
 
 @Component({
     selector: "knowledge-index",
@@ -11,7 +11,7 @@ import { IResourcePoolEditorConfig, ResourcePoolEditorService } from "../../reso
 })
 export class KnowledgeIndexComponent implements OnDestroy, OnInit {
 
-    knowledgeIndexConfig: IResourcePoolEditorConfig = { resourcePoolUniqueKey: { username: "sample", resourcePoolKey: "Knowledge-Index-Sample" } };
+    knowledgeIndexConfig: IProjectViewerConfig = { projectUniqueKey: { username: "sample", projectKey: "Knowledge-Index-Sample" } };
 
     newModelChartConfig: ChartConfig = new ChartConfig({
         chart: {
@@ -47,10 +47,10 @@ export class KnowledgeIndexComponent implements OnDestroy, OnInit {
         new ChartDataItem("Nuka Cola Company", 0, new EventEmitter<number>())
         ]);
 
-    popularSoftwareLicensesConfig: IResourcePoolEditorConfig = { resourcePoolUniqueKey: { username: "sample", resourcePoolKey: "Knowledge-Index-Popular-Software-Licenses" } };
+    popularSoftwareLicensesConfig: IProjectViewerConfig = { projectUniqueKey: { username: "sample", projectKey: "Knowledge-Index-Popular-Software-Licenses" } };
     subscriptions: Subscription[] = [];
 
-    constructor(private resourcePoolService: ResourcePoolEditorService) {
+    constructor(private projectService: ProjectService) {
     }
 
     ngOnDestroy(): void {

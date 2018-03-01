@@ -11,7 +11,7 @@ export class TestHelpers {
     static createElement(project?: Project): Element {
 
         if (!project) {
-            project = TestHelpers.createResourcePool();
+            project = TestHelpers.createProject();
         }
 
         // Element
@@ -72,7 +72,7 @@ export class TestHelpers {
     static createElementField(element?: Element, dataType?: ElementFieldDataType, indexRatingTotal?: number, indexRatingCount?: number, userElementFieldRating?: number): ElementField {
 
         if (!element) {
-            const project = TestHelpers.createResourcePool();
+            const project = TestHelpers.createProject();
             element = TestHelpers.createElement(project);
         }
 
@@ -111,7 +111,7 @@ export class TestHelpers {
     static createElementItem(element?: Element): ElementItem {
 
         if (!element) {
-            const project = TestHelpers.createResourcePool();
+            const project = TestHelpers.createProject();
             element = TestHelpers.createElement(project);
         }
 
@@ -129,7 +129,7 @@ export class TestHelpers {
         return elementItem;
     }
 
-    static createResourcePool(): Project {
+    static createProject(): Project {
         const project = new Project();
         project.ElementSet = [];
         project.initialize();

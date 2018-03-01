@@ -5,7 +5,7 @@ describe("main/app-entity-manager/entities/resource-pool", () => {
 
     it("Key: if not set, should be equal to Name", () => {
 
-        var project = TestHelpers.createResourcePool();
+        var project = TestHelpers.createProject();
 
         project.Name = "name";
 
@@ -14,7 +14,7 @@ describe("main/app-entity-manager/entities/resource-pool", () => {
 
     it("Key: if set, should stay as it is", () => {
 
-        var project = TestHelpers.createResourcePool();
+        var project = TestHelpers.createProject();
 
         project.Key = "key";
         project.Name = "name";
@@ -24,7 +24,7 @@ describe("main/app-entity-manager/entities/resource-pool", () => {
 
     it("toggleRatingMode: RatingMode should be 'All Users' after first call", () => {
 
-        var project = TestHelpers.createResourcePool();
+        var project = TestHelpers.createProject();
 
         project.toggleRatingMode();
 
@@ -33,7 +33,7 @@ describe("main/app-entity-manager/entities/resource-pool", () => {
 
     it("toggleRatingMode: RatingMode should be 'Current User' after second call", () => {
 
-        var project = TestHelpers.createResourcePool();
+        var project = TestHelpers.createProject();
 
         project.toggleRatingMode();
         project.toggleRatingMode();

@@ -11,10 +11,10 @@ import { ElementField, ElementFieldDataType } from "../app-entity-manager/entiti
 import { IUniqueKey, RatingMode, Project } from "../app-entity-manager/entities/resource-pool";
 import { User } from "../app-entity-manager/entities/user";
 import { ChartConfig, ChartDataItem } from "../ng-chart/ng-chart.module";
-import { ResourcePoolEditorService } from "./resource-pool-editor.service";
+import { ProjectService } from "./resource-pool-editor.service";
 
 export interface IConfig {
-    resourcePoolUniqueKey: IUniqueKey
+    projectUniqueKey: IUniqueKey
 };
 
 @Component({
@@ -22,14 +22,14 @@ export interface IConfig {
     styleUrls: ["resource-pool-editor.component.css"],
     templateUrl: "resource-pool-editor.component.html"
 })
-export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
+export class ProjectViewerComponent implements OnDestroy, OnInit {
 
-    constructor(private resourcePoolEditorService: ResourcePoolEditorService,
+    constructor(private projectService: ProjectService,
         private router: Router) {
     }
 
     @Input()
-    config: IConfig = { resourcePoolUniqueKey: { resourcePoolKey: "", username: "" } };
+    config: IConfig = { projectUniqueKey: { projectKey: "", username: "" } };
     chartConfig: ChartConfig = null;
     currentUser: User = null;
     displayChart: boolean = false;
@@ -39,13 +39,13 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
     elementItemsSortField = "name";
     errorMessage: string = "";
     get isBusy(): boolean {
-        return this.resourcePoolEditorService.isBusy;
+        return this.projectService.isBusy;
     }
     RatingMode = RatingMode;
     project: Project = null;
-    resourcePoolKey = "";
-    get resourcePoolUniqueKey(): IUniqueKey {
-        return { username: this.username, resourcePoolKey: this.resourcePoolKey };
+    projectKey = "";
+    get projectUniqueKey(): IUniqueKey {
+        return { username: this.username, projectKey: this.projectKey };
     }
     saveStream = new Subject();
     get selectedElement(): Element {
@@ -68,37 +68,37 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
     }
 
     decreaseIndexRating(field: ElementField) {
-        this.resourcePoolEditorService.updateElementFieldIndexRating(field, "decrease");
+        this.projectService.updateElementFieldIndexRating(field, "decrease");
         this.saveStream.next();
     }
 
     increaseIndexRating(field: ElementField) {
-        this.resourcePoolEditorService.updateElementFieldIndexRating(field, "increase");
+        this.projectService.updateElementFieldIndexRating(field, "increase");
         this.saveStream.next();
     }
 
-    initialize(username: string, resourcePoolKey: string, user: User) {
+    initialize(username: string, projectKey: string, user: User) {
 
         // If there is no change, no need to continue
-        if (this.username === username && this.resourcePoolKey === resourcePoolKey && this.currentUser === user) {
+        if (this.username === username && this.projectKey === projectKey && this.currentUser === user) {
             return;
         }
 
         this.username = username;
-        this.resourcePoolKey = resourcePoolKey;
+        this.projectKey = projectKey;
         this.currentUser = user;
 
         // Clear previous error messages
         this.errorMessage = "";
 
         // Validate
-        if (this.username === "" || this.resourcePoolKey === "") {
+        if (this.username === "" || this.projectKey === "") {
             this.errorMessage = "CMRP Id cannot be null";
             return;
         }
 
         // Get project
-        this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePoolUniqueKey)
+        this.projectService.getProjectExpanded(this.projectUniqueKey)
             .subscribe((project: Project) => {
 
                 if (!project) {
@@ -197,15 +197,6 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
         }
     }
 
-    manageResourcePool(): void {
-        const editLink = `/${this.config.resourcePoolUniqueKey.username}/${this.config.resourcePoolUniqueKey.resourcePoolKey}/edit`;
-        this.router.navigate([editLink]);
-    }
-
-    manageResourcePoolEnabled(): boolean {
-        return this.project.User === this.currentUser;
-    }
-
     ngOnDestroy(): void {
         for (let i = 0; i < this.subscriptions.length; i++) {
             this.subscriptions[i].unsubscribe();
@@ -214,17 +205,17 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
     ngOnInit(): void {
 
-        const username = typeof this.config.resourcePoolUniqueKey.username === "undefined" ? "" : this.config.resourcePoolUniqueKey.username;
-        const resourcePoolKey = typeof this.config.resourcePoolUniqueKey.resourcePoolKey === "undefined" ? "" : this.config.resourcePoolUniqueKey.resourcePoolKey;
+        const username = typeof this.config.projectUniqueKey.username === "undefined" ? "" : this.config.projectUniqueKey.username;
+        const projectKey = typeof this.config.projectUniqueKey.projectKey === "undefined" ? "" : this.config.projectUniqueKey.projectKey;
 
         // Delayed save operation
         this.saveStream.debounceTime(1500)
-            .mergeMap(() => this.resourcePoolEditorService.saveChanges()).subscribe();
+            .mergeMap(() => this.projectService.saveChanges()).subscribe();
 
         // Event handlers
         this.subscriptions.push(
-            this.resourcePoolEditorService.currentUserChanged$.subscribe((newUser) =>
-                this.initialize(this.username, this.resourcePoolKey, newUser))
+            this.projectService.currentUserChanged$.subscribe((newUser) =>
+                this.initialize(this.username, this.projectKey, newUser))
         );
 
         // Refresh project timer
@@ -232,15 +223,15 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
         this.subscriptions.push(
             Observable.timer(refreshProject, refreshProject).mergeMap(() => {
-                return this.resourcePoolEditorService.getResourcePoolExpanded(this.project.uniqueKey, true);
+                return this.projectService.getProjectExpanded(this.project.uniqueKey, true);
             }).subscribe()
         );
 
-        this.initialize(username, resourcePoolKey, this.resourcePoolEditorService.currentUser);
+        this.initialize(username, projectKey, this.projectService.currentUser);
     }
 
     resetIndexRating(field: ElementField) {
-        this.resourcePoolEditorService.updateElementFieldIndexRating(field, "reset");
+        this.projectService.updateElementFieldIndexRating(field, "reset");
         this.saveStream.next();
     }
 
@@ -255,7 +246,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
     }
 
     updateElementCellDecimalValue(cell: ElementCell, value: number) {
-        this.resourcePoolEditorService.updateElementCellDecimalValue(cell, value);
+        this.projectService.updateElementCellDecimalValue(cell, value);
         this.saveStream.next();
     }
 

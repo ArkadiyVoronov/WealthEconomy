@@ -4,30 +4,30 @@ import { Observable } from "rxjs/Observable";
 
 import { AppEntityManager } from "../app-entity-manager/app-entity-manager.module";
 import { IUniqueKey } from "../app-entity-manager/entities/resource-pool";
-import { ResourcePoolEditorService } from "../resource-pool-editor/resource-pool-editor.module";
+import { ProjectService } from "../resource-pool-editor/resource-pool-editor.module";
 
 @Injectable()
 export class DynamicTitleResolve implements Resolve<string> {
 
-    constructor(private appEntityManager: AppEntityManager, private resourcePoolService: ResourcePoolEditorService) { }
+    constructor(private appEntityManager: AppEntityManager, private projectService: ProjectService) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<string> {
 
         const username = route.params["username"];
-        const resourcePoolKey = route.params["resourcePoolKey"];
+        const projectKey = route.params["projectKey"];
         const lastUrl = route.url[route.url.length - 1];
 
-        if (username && resourcePoolKey) { // Project title
+        if (username && projectKey) { // Project title
 
             let title = "";
 
             // Project unique key
-            const resourcePoolUniqueKey: IUniqueKey = {
+            const projectUniqueKey: IUniqueKey = {
                 username: username,
-                resourcePoolKey: resourcePoolKey
+                projectKey: projectKey
             };
 
-            return this.resourcePoolService.getResourcePoolExpanded(resourcePoolUniqueKey)
+            return this.projectService.getProjectExpanded(projectUniqueKey)
                 .map((project): string => {
 
                     if (project !== null) {

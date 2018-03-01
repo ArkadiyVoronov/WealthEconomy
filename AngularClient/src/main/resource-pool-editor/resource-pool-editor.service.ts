@@ -17,7 +17,7 @@ import { AuthService } from "../auth/auth.module";
 import { AppEntityManager } from "../app-entity-manager/app-entity-manager.module";
 
 @Injectable()
-export class ResourcePoolEditorService {
+export class ProjectService {
 
     get currentUser(): User {
         return this.authService.currentUser;
@@ -112,12 +112,12 @@ export class ResourcePoolEditorService {
         return userElementField;
     }
 
-    getResourcePoolExpanded(resourcePoolUniqueKey: IUniqueKey, forceRefresh?: boolean) {
+    getProjectExpanded(projectUniqueKey: IUniqueKey, forceRefresh?: boolean) {
         forceRefresh = forceRefresh || false;
 
         // If it's forced, remove it from fetched list so it can be retrieved from the server
         if (forceRefresh) {
-            const keyIndex = this.fetchedList.indexOf(resourcePoolUniqueKey);
+            const keyIndex = this.fetchedList.indexOf(projectUniqueKey);
             this.fetchedList.splice(keyIndex, 1);
         }
 
@@ -126,8 +126,8 @@ export class ResourcePoolEditorService {
         var fetchedEarlier = false;
 
         // If it's not newly created, check the fetched list
-        fetchedEarlier = this.fetchedList.some(item => (resourcePoolUniqueKey.username === item.username // TODO: Equals check?
-            && resourcePoolUniqueKey.resourcePoolKey === item.resourcePoolKey));
+        fetchedEarlier = this.fetchedList.some(item => (projectUniqueKey.username === item.username // TODO: Equals check?
+            && projectUniqueKey.projectKey === item.projectKey));
 
         // Prepare the query
         let query = EntityQuery.from("Project");
@@ -139,10 +139,10 @@ export class ResourcePoolEditorService {
             query = query.expand("User, ElementSet.ElementFieldSet, ElementSet.ElementItemSet.ElementCellSet");
         }
 
-        const userNamePredicate = new Predicate("User.UserName", "eq", resourcePoolUniqueKey.username);
-        const resourcePoolKeyPredicate = new Predicate("Key", "eq", resourcePoolUniqueKey.resourcePoolKey);
+        const userNamePredicate = new Predicate("User.UserName", "eq", projectUniqueKey.username);
+        const projectKeyPredicate = new Predicate("Key", "eq", projectUniqueKey.projectKey);
 
-        query = query.where(userNamePredicate.and(resourcePoolKeyPredicate));
+        query = query.where(userNamePredicate.and(projectKeyPredicate));
 
         // From server or local?
         if (!fetchedEarlier) {
@@ -164,7 +164,7 @@ export class ResourcePoolEditorService {
 
                 // Add the record into fetched list
                 if (!fetchedEarlier) {
-                    this.fetchedList.push(resourcePoolUniqueKey);
+                    this.fetchedList.push(projectUniqueKey);
                 }
 
                 return project;
