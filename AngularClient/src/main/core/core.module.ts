@@ -21,7 +21,7 @@ import { ReasonComponent } from "./components/reason.component";
 import { TotalCostIndexComponent } from "./components/total-cost-index.component";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
-import { ProjectViewerModule } from "../resource-pool-editor/resource-pool-editor.module";
+import { ProjectViewerModule } from "../project-viewer/project-viewer.module";
 
 // Services
 import { CanDeactivateGuard } from "./can-deactivate-guard.service";

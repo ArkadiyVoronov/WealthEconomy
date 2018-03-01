@@ -12,7 +12,7 @@ import { AppHttpModule } from "../app-http/app-http.module";
 import { AuthModule } from "../auth/auth.module";
 import { LoggerModule } from "../logger/logger.module";
 import { NgChartModule } from "../ng-chart/ng-chart.module";
-import { ProjectViewerModule } from "../resource-pool-editor/resource-pool-editor.module";
+import { ProjectViewerModule } from "../project-viewer/project-viewer.module";
 
 // Core module
 import { CoreModule } from "../core/core.module";

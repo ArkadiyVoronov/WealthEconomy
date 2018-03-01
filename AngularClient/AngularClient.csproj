@@ -72,7 +72,7 @@
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-cell.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-field.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool-editor\project.service.ts" />
+    <TypeScriptCompile Include="src\main\project-viewer\project.service.ts" />
     <TypeScriptCompile Include="src\main\auth\auth.service.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.module.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.service.ts" />
@@ -80,9 +80,9 @@
     <TypeScriptCompile Include="src\main\ng-chart\chart-data-item.ts" />
     <TypeScriptCompile Include="src\main\ng-chart\ng-chart.component.ts" />
     <TypeScriptCompile Include="src\main\ng-chart\ng-chart.module.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.component.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.module.ts" />
-    <TypeScriptCompile Include="src\main\resource-pool-editor\symbolic.pipe.ts" />
+    <TypeScriptCompile Include="src\main\project-viewer\project-viewer.component.ts" />
+    <TypeScriptCompile Include="src\main\project-viewer\project-viewer.module.ts" />
+    <TypeScriptCompile Include="src\main\project-viewer\symbolic.pipe.ts" />
     <TypeScriptCompile Include="src\main\core\rxjs-extensions.ts" />
     <TypeScriptCompile Include="src\main\shared\utils.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -143,8 +143,8 @@
     <Content Include="src\main\core\components\not-found.component.html" />
     <Content Include="src\main\ng-chart\ng-chart.component.css" />
     <Content Include="src\main\ng-chart\ng-chart.component.html" />
-    <Content Include="src\main\resource-pool-editor\resource-pool-editor.component.css" />
-    <Content Include="src\main\resource-pool-editor\resource-pool-editor.component.html" />
+    <Content Include="src\main\project-viewer\project-viewer.component.css" />
+    <Content Include="src\main\project-viewer\project-viewer.component.html" />
     <Content Include="src\styles.css" />
   </ItemGroup>
   <ItemGroup />

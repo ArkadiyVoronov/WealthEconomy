@@ -18,9 +18,9 @@ export interface IConfig {
 };
 
 @Component({
-    selector: "resource-pool-editor",
-    styleUrls: ["resource-pool-editor.component.css"],
-    templateUrl: "resource-pool-editor.component.html"
+    selector: "project-viewer",
+    styleUrls: ["project-viewer.component.css"],
+    templateUrl: "project-viewer.component.html"
 })
 export class ProjectViewerComponent implements OnDestroy, OnInit {
 

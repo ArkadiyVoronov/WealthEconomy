@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
-import { IConfig as IProjectViewerConfig, ProjectViewerComponent } from "./resource-pool-editor.component";
+import { IConfig as IProjectViewerConfig, ProjectViewerComponent } from "./project-viewer.component";
 import { ProjectService } from "./project.service";
 import { SymbolicPipe } from "./symbolic.pipe";
 

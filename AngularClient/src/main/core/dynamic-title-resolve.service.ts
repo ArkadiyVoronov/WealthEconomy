@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import { AppEntityManager } from "../app-entity-manager/app-entity-manager.module";
 import { IUniqueKey } from "../app-entity-manager/entities/resource-pool";
-import { ProjectService } from "../resource-pool-editor/resource-pool-editor.module";
+import { ProjectService } from "../project-viewer/project-viewer.module";
 
 @Injectable()
 export class DynamicTitleResolve implements Resolve<string> {

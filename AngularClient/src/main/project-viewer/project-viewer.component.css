@@ -1,46 +1,46 @@
-﻿.resource-pool-editor {
+﻿.project-viewer {
     font-family: Tahoma;
     padding: 1.5em 0;
 }
 
-    .resource-pool-editor button.btn-link {
+    .project-viewer button.btn-link {
         border: 0;
         font-weight: inherit;
         padding: 0;
     }
 
-    .resource-pool-editor button.btn-xs {
+    .project-viewer button.btn-xs {
         line-height: normal;
         padding: 0;
     }
 
-    .resource-pool-editor .heading {
+    .project-viewer .heading {
         padding: 15px;
     }
 
-    .resource-pool-editor .title {
+    .project-viewer .title {
         font-size: 18px;
         line-height: 2em;
     }
 
-    .resource-pool-editor hr {
+    .project-viewer hr {
         margin: 10px 0 20px 0;
         border-color: #ddd;
     }
 
-    .resource-pool-editor .description {
+    .project-viewer .description {
         padding: 30px 15px;
         font-size: 14px;
         line-height: 1.5em;
         border-bottom: 1px solid #ddd;
     }
 
-    .resource-pool-editor .settings,
-    .resource-pool-editor .details {
+    .project-viewer .settings,
+    .project-viewer .details {
         min-height: 3em;
     }
 
-    .resource-pool-editor .details label, .resource-pool-editor .details span {
+    .project-viewer .details label, .project-viewer .details span {
         border-bottom: 1px solid #ddd;
         display: inline-block;
         line-height: 2em;

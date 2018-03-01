@@ -10,7 +10,7 @@ import { AppHttpModule } from "../main/app-http/app-http.module";
 import { AuthModule } from "../main/auth/auth.module";
 import { LoggerModule } from "../main/logger/logger.module";
 import { NgChartModule } from "../main/ng-chart/ng-chart.module";
-import { ProjectViewerModule } from "../main/resource-pool-editor/resource-pool-editor.module";
+import { ProjectViewerModule } from "../main/project-viewer/project-viewer.module";
 
 import { AppRouterModule } from "./app-router.module";
 import { AppComponent } from "./app.component";

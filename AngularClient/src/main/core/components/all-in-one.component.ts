@@ -1,7 +1,7 @@
 ﻿import { Component } from "@angular/core";
 
 import { ElementCell } from "../../app-entity-manager/entities/element-cell";
-import { IProjectViewerConfig, ProjectService } from "../../resource-pool-editor/resource-pool-editor.module";
+import { IProjectViewerConfig, ProjectService } from "../../project-viewer/project-viewer.module";
 
 @Component({
     selector: "all-in-one",
