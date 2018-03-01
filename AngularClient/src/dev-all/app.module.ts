@@ -16,7 +16,7 @@ import { AppRouterModule } from "./app-router.module";
 import { AppComponent } from "./app.component";
 import { MiscComponent } from "./misc.component";
 import { NavigationComponent } from "./navigation.component";
-import { ProjectTesterComponent } from "./resource-pool-tester.component";
+import { ProjectTesterComponent } from "./project-tester.component";
 
 @NgModule({
     bootstrap: [

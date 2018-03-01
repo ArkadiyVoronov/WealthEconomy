@@ -4,7 +4,7 @@ import { Angulartics2GoogleAnalytics, Angulartics2Module } from "angulartics2";
 
 // Components
 import { MiscComponent } from "./misc.component";
-import { ProjectTesterComponent } from "./resource-pool-tester.component";
+import { ProjectTesterComponent } from "./project-tester.component";
 
 import { GoogleAnalyticsService } from "../main/core/google-analytics.service";
 
@@ -12,7 +12,7 @@ export { Angulartics2GoogleAnalytics, GoogleAnalyticsService }
 
 const routes: Routes = [
     { path: "", component: MiscComponent, data: { title: "Misc" } },
-    { path: "app/resource-pool-tester", component: ProjectTesterComponent, data: { title: "Project Tester" } },
+    { path: "app/project-tester", component: ProjectTesterComponent, data: { title: "Project Tester" } },
 
     /* Home alternatives */
     { path: "app/misc", redirectTo: "", pathMatch: "full" },

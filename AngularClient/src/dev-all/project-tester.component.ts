@@ -4,9 +4,9 @@ import { RatingMode, Project } from "../main/app-entity-manager/entities/resourc
 import { ProjectService } from "../main/resource-pool-editor/resource-pool-editor.module";
 
 @Component({
-    selector: "resource-pool-tester",
-    styleUrls: ["resource-pool-tester.component.css"],
-    templateUrl: "resource-pool-tester.component.html"
+    selector: "project-tester",
+    styleUrls: ["project-tester.component.css"],
+    templateUrl: "project-tester.component.html"
 })
 export class ProjectTesterComponent implements OnInit {
 
