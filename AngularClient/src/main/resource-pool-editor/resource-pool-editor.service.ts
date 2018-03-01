@@ -171,46 +171,8 @@ export class ResourcePoolEditorService {
             });
     }
 
-    getResourcePoolSet(searchKey: string = "") {
-
-        let query = EntityQuery
-            .from("Project")
-            .expand(["User"])
-            .orderBy("Name");
-
-        if (searchKey !== "") {
-            const resourcePoolNamePredicate = new Predicate("Name", "contains", searchKey);
-            const userNamePredicate = new Predicate("User.UserName", "contains", searchKey);
-            query = query.where(resourcePoolNamePredicate.or(userNamePredicate));
-        }
-
-        // Prepare the query
-        //if (fetchFromServer) { // From remote
-        query = query.using(FetchStrategy.FromServer);
-        //    fetchFromServer = false; // Do it only once per user
-        //}
-        //else { // From local
-        //query = query.using(FetchStrategy.FromLocalCache);
-        //}
-
-        return this.appEntityManager.executeQueryNew<Project>(query)
-            .map(response => {
-                return response.results;
-            });
-    }
-
     hasChanges(): boolean {
         return this.appEntityManager.hasChanges();
-    }
-
-    // Currently not in use
-    refreshComputedFields(resourcePool: Project): Observable<void> {
-
-        const updateComputedFieldsUrl = this.getUpdateComputedFieldsUrl(resourcePool.Id);
-
-        return this.appHttp.post<void>(updateComputedFieldsUrl, null).mergeMap(() => {
-            return this.getResourcePoolExpanded(resourcePool.uniqueKey, true).map(() => { });
-        });
     }
 
     rejectChanges(): void {
@@ -248,20 +210,6 @@ export class ResourcePoolEditorService {
         this.elementCellDecimalValueUpdated$.emit(elementCell);
     }
 
-    updateElementFieldIndexRatingNew(elementField: ElementField, value: number) {
-
-        // If there is no item, create it
-        if (!elementField.UserElementFieldSet[0]) {
-
-            this.createUserElementField(elementField, value);
-
-        } else { // If there is an item, set the Rating
-
-            elementField.UserElementFieldSet[0].Rating = value;
-
-        }
-    }
-
     updateElementFieldIndexRating(elementField: ElementField, updateType: string) {
 
         switch (updateType) {
@@ -294,9 +242,5 @@ export class ResourcePoolEditorService {
                 break;
             }
         }
-    }
-
-    private getUpdateComputedFieldsUrl(projectId: number) {
-        return `${AppSettings.serviceAppUrl}/api/ResourcePoolApi/${projectId}/UpdateComputedFields`;
     }
 }

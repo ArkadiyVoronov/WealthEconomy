@@ -75,7 +75,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             // Managers & stores & repositories
             var userStore = new AppUserStore(context);
             var userManager = new UserManager<User, int>(userStore);
-            var resourcePoolStore = context.Set<Project>();
+            var projectStore = context.Set<Project>();
 
             // Sample user
             var sampleUserName = "sample";
@@ -97,7 +97,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             // Login as (required in order to save the rest of the items)
             Security.LoginAs(sampleUser.Id, "Regular");
 
-            // Sample resource pools
+            // Sample projects
             var billionDollarQuestion = CreateBillionDollarQuestion(sampleUser);
             var upoSample = CreateUPOSample(sampleUser);
             var basicsExistingSystemSample = CreateBasicsExistingSystemSample(sampleUser);
@@ -123,16 +123,16 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             allInOneSample.Id = 7;
 
             // Insert
-            resourcePoolStore.Add(billionDollarQuestion);
-            resourcePoolStore.Add(upoSample);
-            resourcePoolStore.Add(basicsExistingSystemSample);
-            resourcePoolStore.Add(basicsNewSystemSample);
-            resourcePoolStore.Add(priorityIndexSample);
-            resourcePoolStore.Add(knowledgeIndexSample);
-            resourcePoolStore.Add(knowledgeIndexPopularSoftwareLicenseSample);
-            resourcePoolStore.Add(totalCostIndexExistingSystemSample);
-            resourcePoolStore.Add(totalCostIndexNewSystemSample);
-            resourcePoolStore.Add(allInOneSample);
+            projectStore.Add(billionDollarQuestion);
+            projectStore.Add(upoSample);
+            projectStore.Add(basicsExistingSystemSample);
+            projectStore.Add(basicsNewSystemSample);
+            projectStore.Add(priorityIndexSample);
+            projectStore.Add(knowledgeIndexSample);
+            projectStore.Add(knowledgeIndexPopularSoftwareLicenseSample);
+            projectStore.Add(totalCostIndexExistingSystemSample);
+            projectStore.Add(totalCostIndexNewSystemSample);
+            projectStore.Add(allInOneSample);
 
             // First save
             context.SaveChanges();
@@ -143,8 +143,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 5;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Billion Dollar Question",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Billion Dollar Question",
                 mainElementName: "Issues",
                 addImportanceIndex: true,
                 numberOfItems: numberOfItems);
@@ -172,8 +172,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 1;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Unidentified Profiting Object (UPO)",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Unidentified Profiting Object (UPO)",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -194,8 +194,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 4;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Basics - Existing Model",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Basics - Existing Model",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -219,8 +219,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 4;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Basics - New Model",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Basics - New Model",
                 mainElementName: "Organization",
                 addImportanceIndex: true,
                 numberOfItems: numberOfItems);
@@ -247,8 +247,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 4;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Priority Index Sample",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Priority Index Sample",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -290,8 +290,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 2;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Knowledge Index Sample",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Knowledge Index Sample",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -343,8 +343,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 4;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Knowledge Index - Popular Software Licenses",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Knowledge Index - Popular Software Licenses",
                 mainElementName: "License",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -379,8 +379,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 2;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Total Cost Index - Existing Model",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Total Cost Index - Existing Model",
                 mainElementName: "Product",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -402,8 +402,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 2;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "Total Cost Index - New Model",
+            var project = CreateDefaultProject(user: user,
+                projectName: "Total Cost Index - New Model",
                 mainElementName: "Product",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -425,8 +425,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             const int numberOfItems = 16;
 
             // Project
-            var project = CreateDefaultResourcePool(user: user,
-                resourcePoolName: "All in One",
+            var project = CreateDefaultProject(user: user,
+                projectName: "All in One",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
@@ -564,10 +564,10 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             return project;
         }
 
-        private static Project CreateDefaultResourcePool(User user, string resourcePoolName, string mainElementName, bool addImportanceIndex, int numberOfItems)
+        private static Project CreateDefaultProject(User user, string projectName, string mainElementName, bool addImportanceIndex, int numberOfItems)
         {
             // Project, main element, fields
-            var project = new Project(user, resourcePoolName)
+            var project = new Project(user, projectName)
             {
                 InitialValue = 100
             };

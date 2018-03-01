@@ -20,7 +20,7 @@ namespace forCrowd.WealthEconomy.Facade
         private readonly DbSet<ElementField> _elementFieldStore;
         private readonly DbSet<ElementItem> _elementItemStore;
         private readonly DbSet<Element> _elementStore;
-        private readonly DbSet<Project> _resourcePoolStore;
+        private readonly DbSet<Project> _projectStore;
         private readonly DbSet<UserElementCell> _userElementCellStore;
         private readonly DbSet<UserElementField> _userElementFieldStore;
 
@@ -30,7 +30,7 @@ namespace forCrowd.WealthEconomy.Facade
             _elementCellStore = _context.Set<ElementCell>();
             _elementFieldStore = _context.Set<ElementField>();
             _elementItemStore = _context.Set<ElementItem>();
-            _resourcePoolStore = _context.Set<Project>();
+            _projectStore = _context.Set<Project>();
             _userElementCellStore = _context.Set<UserElementCell>();
             _userElementFieldStore = _context.Set<UserElementField>();
         }
@@ -61,7 +61,7 @@ namespace forCrowd.WealthEconomy.Facade
 
         public async Task<int> AddProjectAsync(Project entity)
         {
-            _resourcePoolStore.Add(entity);
+            _projectStore.Add(entity);
             return await _context.SaveChangesAsync();
         }
 
@@ -108,7 +108,7 @@ namespace forCrowd.WealthEconomy.Facade
         public async Task<int> DeleteProjectAsync(int projectId)
         {
             var entity = await GetProjectSet(projectId).SingleOrDefaultAsync();
-            _resourcePoolStore.Remove(entity);
+            _projectStore.Remove(entity);
             return await _context.SaveChangesAsync();
         }
 
@@ -176,7 +176,7 @@ namespace forCrowd.WealthEconomy.Facade
 
         public IQueryable<Project> GetProjectSet(int? projectId = null, bool liveFilter = true, params Expression<Func<Project, object>>[] includeProperties)
         {
-            var query = _resourcePoolStore.GetAll(liveFilter, includeProperties);
+            var query = _projectStore.GetAll(liveFilter, includeProperties);
 
             if (projectId.HasValue)
             {
@@ -221,7 +221,7 @@ namespace forCrowd.WealthEconomy.Facade
 
             if (project == null)
             {
-                throw new KeyNotFoundException($"No resource pool found with id {projectId}");
+                throw new KeyNotFoundException($"No project found with id {projectId}");
             }
 
             project.ModifiedOn = DateTime.UtcNow;

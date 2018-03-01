@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     [TestClass]
-    public class ResourcePoolManagerTests
+    public class ProjectManagerTests
     {
         /// <summary>
         /// TODO: This is just a temp test with a specific db data, ignore it

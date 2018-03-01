@@ -20,7 +20,7 @@ namespace forCrowd.WealthEconomy.BusinessObjects.Entities
         Decimal = 4,
 
         /// <summary>
-        /// A field that holds another defined Element object within the resource pool.
+        /// A field that holds another defined Element object within the project.
         /// Use SelectedElementItem property to set its value on ElementItem level.
         /// </summary>
         Element = 6,

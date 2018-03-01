@@ -63,16 +63,6 @@ export class User extends EntityBase {
         userName: ""
     };
 
-    getResourcePoolSetSorted(): Project[] {
-        return this.ProjectSet.sort((a, b) => {
-            const nameA = a.Name.toLowerCase();
-            const nameB = b.Name.toLowerCase();
-            if (nameA < nameB) { return -1 };
-            if (nameA > nameB) { return 1 };
-            return 0;
-        });
-    }
-
     // Functions
     isAuthenticated(): boolean {
         return this.Id > 0;

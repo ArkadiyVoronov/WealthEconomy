@@ -16,7 +16,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
     public class ElementController : BaseODataController
     {
-        private readonly ProjectManager _resourcePoolManager = new ProjectManager();
+        private readonly ProjectManager _projectManager = new ProjectManager();
 
         // POST odata/Element
         public async Task<IHttpActionResult> Post(Delta<Element> patch)
@@ -32,11 +32,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
             element.DeletedOn = null;
 
             // Owner check: Entity must belong to the current user
-            var r = await _resourcePoolManager
+            var r = await _projectManager
                 .GetProjectSet(element.ProjectId)
                 .SingleOrDefaultAsync();
 
-            var userId = await _resourcePoolManager
+            var userId = await _projectManager
                 .GetProjectSet(element.ProjectId)
                 .Select(item => item.UserId)
                 .Distinct()
@@ -49,7 +49,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
                 return StatusCode(HttpStatusCode.Forbidden);
             }
 
-            await _resourcePoolManager.AddElementAsync(element);
+            await _projectManager.AddElementAsync(element);
 
             return Created(element);
         }
@@ -61,7 +61,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         [ConcurrencyValidator(typeof(Element))]
         public async Task<IHttpActionResult> Patch(int key, Delta<Element> patch)
         {
-            var element = await _resourcePoolManager
+            var element = await _projectManager
                 .GetElementSet(key, true, item => item.Project)
                 .SingleOrDefaultAsync();
 
@@ -74,7 +74,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
             patch.Patch(element);
 
-            await _resourcePoolManager.SaveChangesAsync();
+            await _projectManager.SaveChangesAsync();
 
             return Ok(element);
         }
@@ -85,7 +85,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         // [ConcurrencyValidator(typeof(Element))]
         public async Task<IHttpActionResult> Delete(int key)
         {
-            var element = await _resourcePoolManager
+            var element = await _projectManager
                 .GetElementSet(key, true, item => item.Project)
                 .SingleOrDefaultAsync();
 
@@ -96,7 +96,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
                 return StatusCode(HttpStatusCode.Forbidden);
             }
 
-            await _resourcePoolManager.DeleteElementAsync(element.Id);
+            await _projectManager.DeleteElementAsync(element.Id);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
