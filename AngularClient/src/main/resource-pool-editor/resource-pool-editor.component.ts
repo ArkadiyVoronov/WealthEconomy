@@ -11,7 +11,7 @@ import { ElementField, ElementFieldDataType } from "../app-entity-manager/entiti
 import { IUniqueKey, RatingMode, Project } from "../app-entity-manager/entities/resource-pool";
 import { User } from "../app-entity-manager/entities/user";
 import { ChartConfig, ChartDataItem } from "../ng-chart/ng-chart.module";
-import { ProjectService } from "./resource-pool-editor.service";
+import { ProjectService } from "./project.service";
 
 export interface IConfig {
     projectUniqueKey: IUniqueKey

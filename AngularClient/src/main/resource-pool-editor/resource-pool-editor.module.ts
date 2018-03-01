@@ -5,7 +5,7 @@ import { RouterModule } from "@angular/router";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
 import { IConfig as IProjectViewerConfig, ProjectViewerComponent } from "./resource-pool-editor.component";
-import { ProjectService } from "./resource-pool-editor.service";
+import { ProjectService } from "./project.service";
 import { SymbolicPipe } from "./symbolic.pipe";
 
 export { IProjectViewerConfig, ProjectService }
