@@ -31,11 +31,6 @@
                         </button>
                     </li>
                     <li [hidden]="!currentUser.isAuthenticated()">
-                        <button (click)="navigate('/' + currentUser.UserName)" type="button" class="btn-link">
-                            {{ currentUser.userText }}
-                        </button>
-                    </li>
-                    <li [hidden]="!currentUser.isAuthenticated()">
                         <button (click)="navigate('/app/account')" type="button" class="btn-link">
                             Account
                         </button>

@@ -12,7 +12,7 @@ export { Angulartics2GoogleAnalytics, GoogleAnalyticsService }
 
 const routes: Routes = [
     { path: "", component: MiscComponent, data: { title: "Misc" } },
-    { path: "app/resource-pool-tester", component: ResourcePoolTesterComponent, data: { title: "Resource Pool Tester" } },
+    { path: "app/resource-pool-tester", component: ResourcePoolTesterComponent, data: { title: "Project Tester" } },
 
     /* Home alternatives */
     { path: "app/misc", redirectTo: "", pathMatch: "full" },

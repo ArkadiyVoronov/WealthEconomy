@@ -17,7 +17,6 @@
                                 {{ resourcePool.Name }}
                             </span>
                             <br />
-                            <small>Created by <a routerLink="/{{ resourcePool.User.UserName }}">{{ resourcePool.User.UserName }}</a> on {{ resourcePool.CreatedOn | date }}</small><br />
                             <small>Last modified on {{ resourcePool.ModifiedOn | date: 'medium' }}</small>
                         </p>
                         <div class="pull-right">

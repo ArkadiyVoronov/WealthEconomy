@@ -97,12 +97,12 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
             return;
         }
 
-        // Get resource pool
+        // Get project
         this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePoolUniqueKey)
             .subscribe((resourcePool: Project) => {
 
                 if (!resourcePool) {
-                    this.errorMessage = "Invalid CMRP";
+                    this.errorMessage = "Invalid project";
                     return;
                 }
 
@@ -227,11 +227,11 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
                 this.initialize(this.username, this.resourcePoolKey, newUser))
         );
 
-        // Refresh resource pool timer
-        const refreshResourcePool = 1000 * 60 * 30;
+        // Refresh project timer
+        const refreshProject = 1000 * 60 * 30;
 
         this.subscriptions.push(
-            Observable.timer(refreshResourcePool, refreshResourcePool).mergeMap(() => {
+            Observable.timer(refreshProject, refreshProject).mergeMap(() => {
                 return this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePool.uniqueKey, true);
             }).subscribe()
         );

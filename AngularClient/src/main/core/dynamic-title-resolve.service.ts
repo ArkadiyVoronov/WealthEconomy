@@ -17,11 +17,11 @@ export class DynamicTitleResolve implements Resolve<string> {
         const resourcePoolKey = route.params["resourcePoolKey"];
         const lastUrl = route.url[route.url.length - 1];
 
-        if (username && resourcePoolKey) { // Resource pool title
+        if (username && resourcePoolKey) { // Project title
 
             let title = "";
 
-            // Resource pool unique key
+            // Project unique key
             const resourcePoolUniqueKey: IUniqueKey = {
                 username: username,
                 resourcePoolKey: resourcePoolKey

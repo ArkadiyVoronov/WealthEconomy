@@ -16,7 +16,7 @@ export enum ElementFieldDataType {
     // Use DecimalValue property to set its value on ElementItem level.
     Decimal = 4,
 
-    // A field that holds another defined Element object within the resource pool.
+    // A field that holds another defined Element object within the project.
     // Use SelectedElementItem property to set its value on ElementItem level.
     Element = 6,
 }

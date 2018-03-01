@@ -19,7 +19,6 @@ import { CoreModule } from "../core/core.module";
 
 // Feature modules
 import { AccountModule } from "../account/account.module";
-import { UserModule } from "../user/user.module";
 
 // App component
 import { AppComponent } from "./app.component";
@@ -49,7 +48,6 @@ import { AppComponent } from "./app.component";
 
         CoreModule,
         AccountModule,
-        UserModule
     ],
     providers: [
         Title
