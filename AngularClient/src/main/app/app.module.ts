@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { MomentModule } from "angular2-moment";
-import "../rxjs-extensions";
+import "../core/rxjs-extensions";
 
 // Shared modules
 import { AppEntityManagerModule } from "../app-entity-manager/app-entity-manager.module";
