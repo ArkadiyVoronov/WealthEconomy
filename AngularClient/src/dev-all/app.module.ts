@@ -16,17 +16,7 @@ import { AppRouterModule } from "./app-router.module";
 import { AppComponent } from "./app.component";
 import { MiscComponent } from "./misc.component";
 import { NavigationComponent } from "./navigation.component";
-import { ODataComponent } from "./odata.component";
-import { ODataElementComponent } from "./odata-element.component";
-import { ODataElementCellComponent } from "./odata-element-cell.component";
-import { ODataElementFieldComponent } from "./odata-element-field.component";
-import { ODataElementItemComponent } from "./odata-element-item.component";
-import { ODataResourcePoolComponent } from "./odata-resource-pool.component";
-import { ODataUserElementCellComponent } from "./odata-user-element-cell.component";
-import { ODataUserElementFieldComponent } from "./odata-user-element-field.component";
-import { ODataUserComponent } from "./odata-user.component";
 import { ResourcePoolTesterComponent } from "./resource-pool-tester.component";
-import { WebApiComponent } from "./web-api.component";
 
 @NgModule({
     bootstrap: [
@@ -36,17 +26,7 @@ import { WebApiComponent } from "./web-api.component";
         AppComponent,
         MiscComponent,
         NavigationComponent,
-        ODataComponent,
-        ODataElementComponent,
-        ODataElementCellComponent,
-        ODataElementFieldComponent,
-        ODataElementItemComponent,
-        ODataResourcePoolComponent,
-        ODataUserElementCellComponent,
-        ODataUserElementFieldComponent,
-        ODataUserComponent,
         ResourcePoolTesterComponent,
-        WebApiComponent
     ],
     imports: [
         // External
