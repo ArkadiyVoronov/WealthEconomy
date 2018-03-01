@@ -83,7 +83,7 @@
     <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.component.ts" />
     <TypeScriptCompile Include="src\main\resource-pool-editor\resource-pool-editor.module.ts" />
     <TypeScriptCompile Include="src\main\resource-pool-editor\symbolic.pipe.ts" />
-    <TypeScriptCompile Include="src\main\rxjs-extensions.ts" />
+    <TypeScriptCompile Include="src\main\core\rxjs-extensions.ts" />
     <TypeScriptCompile Include="src\main\user\user.service.ts" />
     <TypeScriptCompile Include="src\main\user\profile.component.ts" />
     <TypeScriptCompile Include="src\main\user\user.module.ts" />

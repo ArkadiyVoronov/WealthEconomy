@@ -15,7 +15,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
     public class UserElementCellController : BaseODataController
     {
-        private readonly ResourcePoolManager _resourcePoolManager = new ResourcePoolManager();
+        private readonly ProjectManager _resourcePoolManager = new ProjectManager();
 
         // POST odata/UserElementCell
         public async Task<IHttpActionResult> Post(Delta<UserElementCell> patch)

@@ -1,5 +1,5 @@
 ﻿import { EntityBase } from "./entity-base";
-import { ResourcePool } from "./resource-pool";
+import { Project } from "./resource-pool";
 import { ElementField, ElementFieldDataType } from "./element-field";
 import { ElementItem } from "./element-item";
 
@@ -7,7 +7,7 @@ export class Element extends EntityBase {
 
     // Public - Server-side
     Id: number = 0;
-    ResourcePool: ResourcePool;
+    Project: Project;
     Name: string = "";
 
     get IsMainElement(): boolean {
@@ -22,7 +22,7 @@ export class Element extends EntityBase {
 
                 // Main element check: If there is another element that its IsMainElement flag is true, make it false
                 if (value) {
-                    this.ResourcePool.ElementSet.forEach(element => {
+                    this.Project.ElementSet.forEach(element => {
                         if (element !== this && element.IsMainElement) {
                             element.IsMainElement = false;
                         }

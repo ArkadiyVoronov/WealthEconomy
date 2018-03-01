@@ -39,7 +39,7 @@ describe("main/app-entity-manager/entities/element-item", () => {
         var item1 = TestHelpers.createElementItem();
 
         // Initial value
-        item1.Element.ResourcePool.InitialValue = 165;
+        item1.Element.Project.InitialValue = 165;
 
         // Decimal cell
         TestHelpers.createElementCell(null, item1);

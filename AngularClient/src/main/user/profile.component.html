@@ -17,12 +17,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr [hidden]="user.ResourcePoolSet.length > 0">
+                    <tr [hidden]="user.ProjectSet.length > 0">
                         <td colspan="4">
                             Nothing to display
                         </td>
                     </tr>
-                    <tr [hidden]="user.ResourcePoolSet.length === 0" *ngFor="let resourcePool of user.getResourcePoolSetSorted()">
+                    <tr [hidden]="user.ProjectSet.length === 0" *ngFor="let resourcePool of user.getResourcePoolSetSorted()">
                         <td>
                             <h3><a routerLink="{{ getResourcePoolLink(resourcePool) }}">{{ resourcePool.Name }}</a></h3>
                         </td>

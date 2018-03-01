@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { RatingMode, ResourcePool } from "../main/app-entity-manager/entities/resource-pool";
+import { RatingMode, Project } from "../main/app-entity-manager/entities/resource-pool";
 import { ResourcePoolEditorService } from "../main/resource-pool-editor/resource-pool-editor.module";
 
 @Component({
@@ -11,7 +11,7 @@ import { ResourcePoolEditorService } from "../main/resource-pool-editor/resource
 export class ResourcePoolTesterComponent implements OnInit {
 
     RatingMode = RatingMode;
-    resourcePool: ResourcePool = null;
+    resourcePool: Project = null;
 
     constructor(private resourcePoolEditorService: ResourcePoolEditorService) {
     }

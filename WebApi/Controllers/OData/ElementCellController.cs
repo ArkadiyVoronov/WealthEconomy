@@ -16,7 +16,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
     public class ElementCellController : BaseODataController
     {
-        private readonly ResourcePoolManager _resourcePoolManager = new ResourcePoolManager();
+        private readonly ProjectManager _resourcePoolManager = new ProjectManager();
 
         // POST odata/ElementCell
         public async Task<IHttpActionResult> Post(Delta<ElementCell> patch)
@@ -35,8 +35,8 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
             // Owner check: Entity must belong to the current user
             var userId = await _resourcePoolManager
-                .GetElementFieldSet(elementCell.ElementFieldId, true, item => item.Element.ResourcePool)
-                .Select(item => item.Element.ResourcePool.UserId)
+                .GetElementFieldSet(elementCell.ElementFieldId, true, item => item.Element.Project)
+                .Select(item => item.Element.Project.UserId)
                 .Distinct()
                 .SingleOrDefaultAsync();
 
@@ -59,11 +59,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         [ConcurrencyValidator(typeof(ElementCell))]
         public async Task<IHttpActionResult> Patch(int key, Delta<ElementCell> patch)
         {
-            var elementCell = await _resourcePoolManager.GetElementCellSet(key, true, item => item.ElementField.Element.ResourcePool).SingleOrDefaultAsync();
+            var elementCell = await _resourcePoolManager.GetElementCellSet(key, true, item => item.ElementField.Element.Project).SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != elementCell.ElementField.Element.ResourcePool.UserId)
+            if (currentUserId != elementCell.ElementField.Element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }
@@ -81,11 +81,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         // [ConcurrencyValidator(typeof(ElementCell))]
         public async Task<IHttpActionResult> Delete(int key)
         {
-            var elementCell = await _resourcePoolManager.GetElementCellSet(key, true, item => item.ElementField.Element.ResourcePool).SingleOrDefaultAsync();
+            var elementCell = await _resourcePoolManager.GetElementCellSet(key, true, item => item.ElementField.Element.Project).SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != elementCell.ElementField.Element.ResourcePool.UserId)
+            if (currentUserId != elementCell.ElementField.Element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }

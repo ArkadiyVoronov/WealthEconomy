@@ -75,7 +75,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             // Managers & stores & repositories
             var userStore = new AppUserStore(context);
             var userManager = new UserManager<User, int>(userStore);
-            var resourcePoolStore = context.Set<ResourcePool>();
+            var resourcePoolStore = context.Set<Project>();
 
             // Sample user
             var sampleUserName = "sample";
@@ -109,7 +109,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             var totalCostIndexNewSystemSample = CreateTotalCostIndexNewSystemSample(sampleUser);
             var allInOneSample = CreateAllInOneSample(sampleUser);
 
-            // Set Id fields explicitly, since strangely EF doesn't save them in the order that they've been added to ResourcePoolSet.
+            // Set Id fields explicitly, since strangely EF doesn't save them in the order that they've been added to ProjectSet.
             // And they're referred with these Ids on front-end samples
             billionDollarQuestion.Id = 1;
             upoSample.Id = 8;
@@ -138,20 +138,20 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             context.SaveChanges();
         }
 
-        private static ResourcePool CreateBillionDollarQuestion(User user)
+        private static Project CreateBillionDollarQuestion(User user)
         {
             const int numberOfItems = 5;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Billion Dollar Question",
                 mainElementName: "Issues",
                 addImportanceIndex: true,
                 numberOfItems: numberOfItems);
-            resourcePool.InitialValue = 1000000000;
+            project.InitialValue = 1000000000;
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Fields
             mainElement.ElementFieldSet.Single(item => item.IndexEnabled).Name = "Rating";
@@ -164,45 +164,45 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(4).First().Name = "Poverty: Clean water for everyone";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateUPOSample(User user)
+        private static Project CreateUPOSample(User user)
         {
             const int numberOfItems = 1;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Unidentified Profiting Object (UPO)",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Unidentified Profiting Object";
+            project.Key = "Unidentified Profiting Object";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Items, cell, user cells
             mainElement.ElementItemSet.First().Name = "UPO";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateBasicsExistingSystemSample(User user)
+        private static Project CreateBasicsExistingSystemSample(User user)
         {
             const int numberOfItems = 4;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Basics - Existing Model",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Basics Existing Model";
+            project.Key = "Basics Existing Model";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Items, cell, user cells
             mainElement.ElementItemSet.Skip(0).First().Name = "Alpha";
@@ -211,23 +211,23 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(3).First().Name = "Delta";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateBasicsNewSystemSample(User user)
+        private static Project CreateBasicsNewSystemSample(User user)
         {
             const int numberOfItems = 4;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Basics - New Model",
                 mainElementName: "Organization",
                 addImportanceIndex: true,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Basics New Model";
+            project.Key = "Basics New Model";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Fields
             mainElement.ElementFieldSet.Single(item => item.IndexEnabled).Name = "Employee Satisfaction";
@@ -239,22 +239,22 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(3).First().Name = "Delta";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreatePriorityIndexSample(User user)
+        private static Project CreatePriorityIndexSample(User user)
         {
             const int numberOfItems = 4;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Priority Index Sample",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
 
             // Industry element
-            var industryElement = resourcePool.AddElement("Industry");
+            var industryElement = project.AddElement("Industry");
 
             // Importance field
             var importanceField = industryElement.AddField("Industry Rating", ElementFieldDataType.Decimal, false);
@@ -267,7 +267,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             var healthcareItem = industryElement.AddItem("Healthcare").AddCell(importanceField).ElementItem;
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
             var industryField = mainElement.AddField("Industry", ElementFieldDataType.Element);
             industryField.SelectedElement = industryElement;
 
@@ -282,22 +282,22 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(3).First().AddCell(industryField).SetValue(healthcareItem);
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateKnowledgeIndexSample(User user)
+        private static Project CreateKnowledgeIndexSample(User user)
         {
             const int numberOfItems = 2;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Knowledge Index Sample",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
 
             // License element
-            var licenseElement = resourcePool.AddElement("License");
+            var licenseElement = project.AddElement("License");
 
             // Fields
             var rightToUseField = licenseElement.AddField("Right to Use", ElementFieldDataType.String);
@@ -323,7 +323,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 .AddCell(licenseRatingField).ElementItem;
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
             var licenseField = mainElement.AddField("License", ElementFieldDataType.Element);
             licenseField.SelectedElement = licenseElement;
 
@@ -335,23 +335,23 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(1).First().AddCell(licenseField).SetValue(openSourceLicense);
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateKnowledgeIndexPopularSoftwareLicenseSample(User user)
+        private static Project CreateKnowledgeIndexPopularSoftwareLicenseSample(User user)
         {
             const int numberOfItems = 4;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Knowledge Index - Popular Software Licenses",
                 mainElementName: "License",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Knowledge Index Popular Software Licenses";
+            project.Key = "Knowledge Index Popular Software Licenses";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Fields
             var importanceField = mainElement.AddField("License Rating", ElementFieldDataType.Decimal, false);
@@ -371,68 +371,68 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(3).First().AddCell(importanceField);
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateTotalCostIndexExistingSystemSample(User user)
+        private static Project CreateTotalCostIndexExistingSystemSample(User user)
         {
             const int numberOfItems = 2;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Total Cost Index - Existing Model",
                 mainElementName: "Product",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Total Cost Index Existing Model";
+            project.Key = "Total Cost Index Existing Model";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Items, cell, user cells
             mainElement.ElementItemSet.Skip(0).First().Name = "4Benefit";
             mainElement.ElementItemSet.Skip(1).First().Name = "4Profit";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateTotalCostIndexNewSystemSample(User user)
+        private static Project CreateTotalCostIndexNewSystemSample(User user)
         {
             const int numberOfItems = 2;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "Total Cost Index - New Model",
                 mainElementName: "Product",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
-            resourcePool.Key = "Total Cost Index New Model";
+            project.Key = "Total Cost Index New Model";
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             // Items, cell, user cells
             mainElement.ElementItemSet.Skip(0).First().Name = "4Benefit";
             mainElement.ElementItemSet.Skip(1).First().Name = "4Profit";
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateAllInOneSample(User user)
+        private static Project CreateAllInOneSample(User user)
         {
             const int numberOfItems = 16;
 
-            // Resource pool
-            var resourcePool = CreateDefaultResourcePool(user: user,
+            // Project
+            var project = CreateDefaultResourcePool(user: user,
                 resourcePoolName: "All in One",
                 mainElementName: "Organization",
                 addImportanceIndex: false,
                 numberOfItems: numberOfItems);
 
             // Industry element
-            var industryElement = resourcePool.AddElement("Industry");
+            var industryElement = project.AddElement("Industry");
 
             // Fields
             var industryRatingField = industryElement.AddField("Industry Rating", ElementFieldDataType.Decimal, false);
@@ -445,7 +445,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             var healthcareItem = industryElement.AddItem("Healthcare").AddCell(industryRatingField).ElementItem;
 
             // License element
-            var licenseElement = resourcePool.AddElement("License");
+            var licenseElement = project.AddElement("License");
 
             // Fields
             var rightToUseField = licenseElement.AddField("Right to Use", ElementFieldDataType.String);
@@ -471,7 +471,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 .AddCell(licenseRatingField).ElementItem;
 
             // Main element
-            var mainElement = resourcePool.ElementSet.First();
+            var mainElement = project.ElementSet.First();
 
             var industryField = mainElement.AddField("Industry", ElementFieldDataType.Element);
             industryField.SelectedElement = industryElement;
@@ -561,19 +561,19 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             mainElement.ElementItemSet.Skip(itemIndex).First().AddCell(licenseField).SetValue(openSourceLicense);
 
             // Return
-            return resourcePool;
+            return project;
         }
 
-        private static ResourcePool CreateDefaultResourcePool(User user, string resourcePoolName, string mainElementName, bool addImportanceIndex, int numberOfItems)
+        private static Project CreateDefaultResourcePool(User user, string resourcePoolName, string mainElementName, bool addImportanceIndex, int numberOfItems)
         {
-            // Resource pool, main element, fields
-            var resourcePool = new ResourcePool(user, resourcePoolName)
+            // Project, main element, fields
+            var project = new Project(user, resourcePoolName)
             {
                 InitialValue = 100
             };
 
             // Main element
-            var element = resourcePool.AddElement(mainElementName);
+            var element = project.AddElement(mainElementName);
             element.IsMainElement = true;
 
             // Importance field
@@ -596,7 +596,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             }
 
             // Return
-            return resourcePool;
+            return project;
         }
     }
 }

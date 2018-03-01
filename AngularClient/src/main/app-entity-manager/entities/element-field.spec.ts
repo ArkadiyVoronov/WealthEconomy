@@ -48,7 +48,7 @@ describe("main/app-entity-manager/entities/element-field", () => {
 
         // Case 1: Initial
         const decimalField1 = TestHelpers.createElementField(null, ElementFieldDataType.Decimal);
-        decimalField1.Element.ResourcePool.InitialValue = 50;
+        decimalField1.Element.Project.InitialValue = 50;
 
         expect(decimalField1.income()).toBe(50);
 
@@ -95,7 +95,7 @@ describe("main/app-entity-manager/entities/element-field", () => {
         expect(decimalField.indexRating()).toBe(decimalField.currentUserIndexRating());
 
         // Toggle (switch to All Users')
-        decimalField.Element.ResourcePool.toggleRatingMode();
+        decimalField.Element.Project.toggleRatingMode();
 
         expect(decimalField.indexRating()).toBe(decimalField.indexRatingAverage());
     });

@@ -6,20 +6,20 @@ using forCrowd.WealthEconomy.Framework;
 
 namespace forCrowd.WealthEconomy.BusinessObjects.Entities
 {
-    public class ResourcePool : BaseEntity
+    public class Project : BaseEntity
     {
         [Obsolete("Parameterless constructors used by OData & EF. Make them private when possible.")]
-        public ResourcePool()
+        public Project()
         {
             ElementSet = new HashSet<Element>();
         }
 
-        public ResourcePool(User user, string name)
+        public Project(User user, string name)
             : this(user, name, name)
         {
         }
 
-        public ResourcePool(User user, string name, string key)
+        public Project(User user, string name, string key)
             : this()
         {
             Validations.ArgumentNullOrDefault(user, nameof(user));

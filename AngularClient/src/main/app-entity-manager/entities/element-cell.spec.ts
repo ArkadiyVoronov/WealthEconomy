@@ -133,7 +133,7 @@ describe("main/app-entity-manager/entities/element-cell", () => {
         expect(cell.numericValue()).toBe(cell.currentUserNumericValue());
 
         // Act -  Cast 2: RatingMode 'All Users' & also cache case
-        cell.ElementField.Element.ResourcePool.RatingMode = RatingMode.AllUsers;
+        cell.ElementField.Element.Project.RatingMode = RatingMode.AllUsers;
 
         // Assert
         expect(cell.numericValue()).toBe(cell.numericValueAverage());

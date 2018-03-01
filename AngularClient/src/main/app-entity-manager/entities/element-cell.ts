@@ -66,7 +66,7 @@ export class ElementCell extends EntityBase {
         this.setCurrentUserNumericValue();
 
         // Event handlers
-        this.ElementField.Element.ResourcePool.ratingModeUpdated.subscribe(() => {
+        this.ElementField.Element.Project.ratingModeUpdated.subscribe(() => {
             this.setNumericValue();
         });
 
@@ -145,7 +145,7 @@ export class ElementCell extends EntityBase {
 
         let value: number;
 
-        switch (this.ElementField.Element.ResourcePool.RatingMode) {
+        switch (this.ElementField.Element.Project.RatingMode) {
             case RatingMode.CurrentUser:
                 {
                     value = this.currentUserNumericValue();

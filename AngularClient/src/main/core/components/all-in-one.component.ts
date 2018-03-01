@@ -22,9 +22,9 @@ export class AllInOneComponent {
     processNewInteraction(elementCell: ElementCell): void {
 
         // Priority Index
-        if (elementCell.ElementField.Element.ResourcePool.User.UserName === "sample"
-            && (elementCell.ElementField.Element.ResourcePool.Key === "Priority-Index-Sample"
-                || elementCell.ElementField.Element.ResourcePool.Key === "Knowledge-Index-Sample")
+        if (elementCell.ElementField.Element.Project.User.UserName === "sample"
+            && (elementCell.ElementField.Element.Project.Key === "Priority-Index-Sample"
+                || elementCell.ElementField.Element.Project.Key === "Knowledge-Index-Sample")
             && this.syncFlag) {
 
             this.resourcePoolService.getResourcePoolExpanded(this.allInOneConfig.resourcePoolUniqueKey)

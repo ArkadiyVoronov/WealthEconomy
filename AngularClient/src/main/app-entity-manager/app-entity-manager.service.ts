@@ -15,7 +15,7 @@ import { EntityBase } from "./entities/entity-base";
 import { ElementCell } from "./entities/element-cell";
 import { ElementField } from "./entities/element-field";
 import { ElementItem } from "./entities/element-item";
-import { ResourcePool } from "./entities/resource-pool";
+import { Project } from "./entities/resource-pool";
 import { Role } from "./entities/role";
 import { User } from "./entities/user";
 import { UserElementCell } from "./entities/user-element-cell";
@@ -72,7 +72,7 @@ export class AppEntityManager extends EntityManager {
         this.metadataStore.registerEntityTypeCtor("ElementCell", ElementCell);
         this.metadataStore.registerEntityTypeCtor("ElementField", ElementField);
         this.metadataStore.registerEntityTypeCtor("ElementItem", ElementItem);
-        this.metadataStore.registerEntityTypeCtor("ResourcePool", ResourcePool);
+        this.metadataStore.registerEntityTypeCtor("Project", Project);
         this.metadataStore.registerEntityTypeCtor("Role", Role);
         this.metadataStore.registerEntityTypeCtor("User", User);
         this.metadataStore.registerEntityTypeCtor("UserRole", UserRole);
@@ -127,7 +127,7 @@ export class AppEntityManager extends EntityManager {
 
         let query = EntityQuery
             .from("Users")
-            .expand("ResourcePoolSet")
+            .expand("ProjectSet")
             .where("UserName", "eq", username);
 
         // From server or local?
@@ -354,9 +354,9 @@ export class AppEntityManager extends EntityManager {
         batches.push(this.getEntities("UserElementField", EntityState.Deleted));
         batches.push(this.getEntities("ElementField", EntityState.Deleted));
         batches.push(this.getEntities("Element", EntityState.Deleted));
-        batches.push(this.getEntities("ResourcePool", EntityState.Deleted));
+        batches.push(this.getEntities("Project", EntityState.Deleted));
 
-        batches.push(this.getEntities("ResourcePool", EntityState.Added));
+        batches.push(this.getEntities("Project", EntityState.Added));
         batches.push(this.getEntities("Element", EntityState.Added));
         batches.push(this.getEntities("ElementField", EntityState.Added));
         batches.push(this.getEntities("UserElementField", EntityState.Added));

@@ -16,7 +16,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
     public class ElementController : BaseODataController
     {
-        private readonly ResourcePoolManager _resourcePoolManager = new ResourcePoolManager();
+        private readonly ProjectManager _resourcePoolManager = new ProjectManager();
 
         // POST odata/Element
         public async Task<IHttpActionResult> Post(Delta<Element> patch)
@@ -33,11 +33,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
             // Owner check: Entity must belong to the current user
             var r = await _resourcePoolManager
-                .GetResourcePoolSet(element.ResourcePoolId)
+                .GetProjectSet(element.ProjectId)
                 .SingleOrDefaultAsync();
 
             var userId = await _resourcePoolManager
-                .GetResourcePoolSet(element.ResourcePoolId)
+                .GetProjectSet(element.ProjectId)
                 .Select(item => item.UserId)
                 .Distinct()
                 .SingleOrDefaultAsync();
@@ -56,18 +56,18 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
         // PATCH odata/Element(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        [ForbiddenFieldsValidator(nameof(Element.Id), nameof(Element.ResourcePoolId), nameof(Element.CreatedOn), nameof(Element.ModifiedOn), nameof(Element.DeletedOn))]
+        [ForbiddenFieldsValidator(nameof(Element.Id), nameof(Element.ProjectId), nameof(Element.CreatedOn), nameof(Element.ModifiedOn), nameof(Element.DeletedOn))]
         [EntityExistsValidator(typeof(Element))]
         [ConcurrencyValidator(typeof(Element))]
         public async Task<IHttpActionResult> Patch(int key, Delta<Element> patch)
         {
             var element = await _resourcePoolManager
-                .GetElementSet(key, true, item => item.ResourcePool)
+                .GetElementSet(key, true, item => item.Project)
                 .SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != element.ResourcePool.UserId)
+            if (currentUserId != element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }
@@ -86,12 +86,12 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         public async Task<IHttpActionResult> Delete(int key)
         {
             var element = await _resourcePoolManager
-                .GetElementSet(key, true, item => item.ResourcePool)
+                .GetElementSet(key, true, item => item.Project)
                 .SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != element.ResourcePool.UserId)
+            if (currentUserId != element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }

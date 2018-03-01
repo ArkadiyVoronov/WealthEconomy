@@ -11,7 +11,7 @@ namespace forCrowd.WealthEconomy.Facade
     using System.Linq.Expressions;
     using System.Threading.Tasks;
 
-    public class ResourcePoolManager : IDisposable
+    public class ProjectManager : IDisposable
     {
         // Fields
         private readonly WealthEconomyContext _context = new WealthEconomyContext();
@@ -20,17 +20,17 @@ namespace forCrowd.WealthEconomy.Facade
         private readonly DbSet<ElementField> _elementFieldStore;
         private readonly DbSet<ElementItem> _elementItemStore;
         private readonly DbSet<Element> _elementStore;
-        private readonly DbSet<ResourcePool> _resourcePoolStore;
+        private readonly DbSet<Project> _resourcePoolStore;
         private readonly DbSet<UserElementCell> _userElementCellStore;
         private readonly DbSet<UserElementField> _userElementFieldStore;
 
-        public ResourcePoolManager()
+        public ProjectManager()
         {
             _elementStore = _context.Set<Element>();
             _elementCellStore = _context.Set<ElementCell>();
             _elementFieldStore = _context.Set<ElementField>();
             _elementItemStore = _context.Set<ElementItem>();
-            _resourcePoolStore = _context.Set<ResourcePool>();
+            _resourcePoolStore = _context.Set<Project>();
             _userElementCellStore = _context.Set<UserElementCell>();
             _userElementFieldStore = _context.Set<UserElementField>();
         }
@@ -59,7 +59,7 @@ namespace forCrowd.WealthEconomy.Facade
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> AddResourcePoolAsync(ResourcePool entity)
+        public async Task<int> AddProjectAsync(Project entity)
         {
             _resourcePoolStore.Add(entity);
             return await _context.SaveChangesAsync();
@@ -105,9 +105,9 @@ namespace forCrowd.WealthEconomy.Facade
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteResourcePoolAsync(int resourcePoolId)
+        public async Task<int> DeleteProjectAsync(int projectId)
         {
-            var entity = await GetResourcePoolSet(resourcePoolId).SingleOrDefaultAsync();
+            var entity = await GetProjectSet(projectId).SingleOrDefaultAsync();
             _resourcePoolStore.Remove(entity);
             return await _context.SaveChangesAsync();
         }
@@ -174,13 +174,13 @@ namespace forCrowd.WealthEconomy.Facade
             return query;
         }
 
-        public IQueryable<ResourcePool> GetResourcePoolSet(int? resourcePoolId = null, bool liveFilter = true, params Expression<Func<ResourcePool, object>>[] includeProperties)
+        public IQueryable<Project> GetProjectSet(int? projectId = null, bool liveFilter = true, params Expression<Func<Project, object>>[] includeProperties)
         {
             var query = _resourcePoolStore.GetAll(liveFilter, includeProperties);
 
-            if (resourcePoolId.HasValue)
+            if (projectId.HasValue)
             {
-                query = query.Where(entity => entity.Id == resourcePoolId.Value);
+                query = query.Where(entity => entity.Id == projectId.Value);
             }
 
             return query;
@@ -215,30 +215,30 @@ namespace forCrowd.WealthEconomy.Facade
             return await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateComputedFieldsAsync(int resourcePoolId)
+        public async Task UpdateComputedFieldsAsync(int projectId)
         {
-            var resourcePool = await GetResourcePoolSet(resourcePoolId).SingleOrDefaultAsync();
+            var project = await GetProjectSet(projectId).SingleOrDefaultAsync();
 
-            if (resourcePool == null)
+            if (project == null)
             {
-                throw new KeyNotFoundException($"No resource pool found with id {resourcePoolId}");
+                throw new KeyNotFoundException($"No resource pool found with id {projectId}");
             }
 
-            resourcePool.ModifiedOn = DateTime.UtcNow;
+            project.ModifiedOn = DateTime.UtcNow;
 
-            UpdateResourcePoolComputedFields(resourcePool);
+            UpdateResourcePoolComputedFields(project);
 
-            UpdateElementFieldComputedFields(resourcePool);
+            UpdateElementFieldComputedFields(project);
 
-            UpdateElementCellComputedFields(resourcePool);
+            UpdateElementCellComputedFields(project);
 
             await SaveChangesAsync();
         }
 
-        private void UpdateElementCellComputedFields(ResourcePool resourcePool)
+        private void UpdateElementCellComputedFields(Project project)
         {
             var query = GetElementCellSet(null, true, cell => cell.ElementField, cell => cell.UserElementCellSet)
-                .Where(cell => cell.ElementField.Element.ResourcePool.Id == resourcePool.Id
+                .Where(cell => cell.ElementField.Element.Project.Id == project.Id
                     && cell.ElementField.DataType == (byte)ElementFieldDataType.Decimal);
 
             var cells = query.AsEnumerable(); // TODO?
@@ -258,11 +258,11 @@ namespace forCrowd.WealthEconomy.Facade
             }
         }
 
-        private void UpdateElementFieldComputedFields(ResourcePool resourcePool)
+        private void UpdateElementFieldComputedFields(Project project)
         {
             var query = GetElementFieldSet(null, true, field => field.UserElementFieldSet)
                 .Where(field => field.IndexEnabled
-                    && field.Element.ResourcePool.Id == resourcePool.Id);
+                    && field.Element.Project.Id == project.Id);
 
             var fields = query.AsEnumerable();
 
@@ -273,24 +273,24 @@ namespace forCrowd.WealthEconomy.Facade
             }
         }
 
-        private void UpdateResourcePoolComputedFields(ResourcePool resourcePool)
+        private void UpdateResourcePoolComputedFields(Project project)
         {
             // Rating count
             var userCellQuery = GetUserElementCellSet()
                 .Where(entity => entity.ElementCell.ElementField.IndexEnabled
-                    && entity.ElementCell.ElementField.Element.ResourcePool.Id == resourcePool.Id)
+                    && entity.ElementCell.ElementField.Element.Project.Id == project.Id)
                 .Select(entity => entity.User);
 
             var userFieldQuery = GetUserElementFieldSet()
                 .Where(entity => entity.ElementField.IndexEnabled
-                    && entity.ElementField.Element.ResourcePool.Id == resourcePool.Id)
+                    && entity.ElementField.Element.Project.Id == project.Id)
                 .Select(entity => entity.User);
 
             var ratingCount = userCellQuery.Union(userFieldQuery)
                 .Distinct()
                 .Count();
 
-            resourcePool.RatingCount = ratingCount;
+            project.RatingCount = ratingCount;
         }
 
         protected virtual void Dispose(bool disposing)

@@ -8,7 +8,7 @@ import { Options } from "highcharts";
 import { Element } from "../app-entity-manager/entities/element";
 import { ElementCell } from "../app-entity-manager/entities/element-cell";
 import { ElementField, ElementFieldDataType } from "../app-entity-manager/entities/element-field";
-import { IUniqueKey, RatingMode, ResourcePool } from "../app-entity-manager/entities/resource-pool";
+import { IUniqueKey, RatingMode, Project } from "../app-entity-manager/entities/resource-pool";
 import { User } from "../app-entity-manager/entities/user";
 import { ChartConfig, ChartDataItem } from "../ng-chart/ng-chart.module";
 import { ResourcePoolEditorService } from "./resource-pool-editor.service";
@@ -42,7 +42,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
         return this.resourcePoolEditorService.isBusy;
     }
     RatingMode = RatingMode;
-    resourcePool: ResourcePool = null;
+    resourcePool: Project = null;
     resourcePoolKey = "";
     get resourcePoolUniqueKey(): IUniqueKey {
         return { username: this.username, resourcePoolKey: this.resourcePoolKey };
@@ -99,7 +99,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
         // Get resource pool
         this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePoolUniqueKey)
-            .subscribe((resourcePool: ResourcePool) => {
+            .subscribe((resourcePool: Project) => {
 
                 if (!resourcePool) {
                     this.errorMessage = "Invalid CMRP";
@@ -137,7 +137,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
             // TODO Check this rule?
 
-            if (element === element.ResourcePool.mainElement() && element.income() > 0) {
+            if (element === element.Project.mainElement() && element.income() > 0) {
 
                 const options: Options = {
                     title: { text: element.Name },

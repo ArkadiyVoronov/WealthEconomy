@@ -9,23 +9,23 @@
     [RoutePrefix("api/ResourcePoolApi")]
     public class ResourcePoolApiController : BaseApiController
     {
-        private ResourcePoolManager _resourcePoolManager;
+        private ProjectManager _projectManager;
 
-        protected ResourcePoolManager ResourcePoolManager => _resourcePoolManager ?? (_resourcePoolManager = new ResourcePoolManager());
+        protected ProjectManager ProjectManager => _projectManager ?? (_projectManager = new ProjectManager());
 
         [Authorize(Roles = "Administrator")]
         [HttpPost]
-        [Route("{resourcePoolId}/UpdateComputedFields")]
-        public async Task<IHttpActionResult> UpdateComputedFields(int resourcePoolId)
+        [Route("{projectId}/UpdateComputedFields")]
+        public async Task<IHttpActionResult> UpdateComputedFields(int projectId)
         {
-            var resourcePool = await ResourcePoolManager.GetResourcePoolSet(resourcePoolId).SingleOrDefaultAsync();
+            var project = await ProjectManager.GetProjectSet(projectId).SingleOrDefaultAsync();
 
-            if (resourcePool == null)
+            if (project == null)
             {
                 return NotFound();
             }
 
-            await ResourcePoolManager.UpdateComputedFieldsAsync(resourcePoolId);
+            await ProjectManager.UpdateComputedFieldsAsync(projectId);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

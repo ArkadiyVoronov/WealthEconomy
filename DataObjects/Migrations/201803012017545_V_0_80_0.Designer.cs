@@ -7,13 +7,13 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class V_0_82_0 : IMigrationMetadata
+    public sealed partial class V_0_80_0 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(V_0_82_0));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(V_0_80_0));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710151741258_V_0_82_0"; }
+            get { return "201803012017545_V_0_80_0"; }
         }
         
         string IMigrationMetadata.Source

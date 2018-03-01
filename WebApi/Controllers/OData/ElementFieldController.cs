@@ -16,7 +16,7 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
     public class ElementFieldController : BaseODataController
     {
-        private readonly ResourcePoolManager _resourcePoolManager = new ResourcePoolManager();
+        private readonly ProjectManager _resourcePoolManager = new ProjectManager();
 
         // POST odata/ElementField
         public async Task<IHttpActionResult> Post(Delta<ElementField> patch)
@@ -35,8 +35,8 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
 
             // Owner check: Entity must belong to the current user
             var userId = await _resourcePoolManager
-                .GetElementSet(elementField.ElementId, true, item => item.ResourcePool)
-                .Select(item => item.ResourcePool.UserId)
+                .GetElementSet(elementField.ElementId, true, item => item.Project)
+                .Select(item => item.Project.UserId)
                 .Distinct()
                 .SingleOrDefaultAsync();
 
@@ -59,11 +59,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         [ConcurrencyValidator(typeof(ElementField))]
         public async Task<IHttpActionResult> Patch(int key, Delta<ElementField> patch)
         {
-            var elementField = await _resourcePoolManager.GetElementFieldSet(key, true, item => item.Element.ResourcePool).SingleOrDefaultAsync();
+            var elementField = await _resourcePoolManager.GetElementFieldSet(key, true, item => item.Element.Project).SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != elementField.Element.ResourcePool.UserId)
+            if (currentUserId != elementField.Element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }
@@ -81,11 +81,11 @@ namespace forCrowd.WealthEconomy.WebApi.Controllers.OData
         // [ConcurrencyValidator(typeof(ElementField))]
         public async Task<IHttpActionResult> Delete(int key)
         {
-            var elementField = await _resourcePoolManager.GetElementFieldSet(key, true, item => item.Element.ResourcePool).SingleOrDefaultAsync();
+            var elementField = await _resourcePoolManager.GetElementFieldSet(key, true, item => item.Element.Project).SingleOrDefaultAsync();
 
             // Owner check: Entity must belong to the current user
             var currentUserId = User.Identity.GetUserId<int>();
-            if (currentUserId != elementField.Element.ResourcePool.UserId)
+            if (currentUserId != elementField.Element.Project.UserId)
             {
                 return StatusCode(HttpStatusCode.Forbidden);
             }

@@ -11,7 +11,7 @@ describe("main/app-entity-manager/entities/element", () => {
         var parent = TestHelpers.createElement();
 
         // Child element
-        var child = TestHelpers.createElement(parent.ResourcePool);
+        var child = TestHelpers.createElement(parent.Project);
 
         // Parent's field
         var field = TestHelpers.createElementField(parent);
@@ -30,10 +30,10 @@ describe("main/app-entity-manager/entities/element", () => {
         var grandParent = TestHelpers.createElement();
 
         // Parent
-        var parent = TestHelpers.createElement(grandParent.ResourcePool);
+        var parent = TestHelpers.createElement(grandParent.Project);
 
         // Child element
-        var child = TestHelpers.createElement(grandParent.ResourcePool);
+        var child = TestHelpers.createElement(grandParent.Project);
 
         // Grand parent's field
         var grandParentField = TestHelpers.createElementField(grandParent);
@@ -59,10 +59,10 @@ describe("main/app-entity-manager/entities/element", () => {
         var grandParent = TestHelpers.createElement();
 
         // Parent
-        var parent = TestHelpers.createElement(grandParent.ResourcePool);
+        var parent = TestHelpers.createElement(grandParent.Project);
 
         // Child element
-        var child = TestHelpers.createElement(grandParent.ResourcePool);
+        var child = TestHelpers.createElement(grandParent.Project);
 
         // Grand parent's field
         var grandParentField = TestHelpers.createElementField(grandParent);
@@ -128,7 +128,7 @@ describe("main/app-entity-manager/entities/element", () => {
         expect(element.income()).toBe(0);
 
         // Case 2: Set initial value, add the fields, first item and the cell
-        element.ResourcePool.InitialValue = 275;
+        element.Project.InitialValue = 275;
 
         var item1 = TestHelpers.createElementItem(element);
 

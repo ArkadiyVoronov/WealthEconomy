@@ -15,7 +15,7 @@ export enum RatingMode {
     AllUsers = 2
 }
 
-export class ResourcePool extends EntityBase {
+export class Project extends EntityBase {
 
     // Server-side
     Id: number = 0;

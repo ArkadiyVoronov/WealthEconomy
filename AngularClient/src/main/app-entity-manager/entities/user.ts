@@ -1,5 +1,5 @@
 ﻿import { EntityBase } from "./entity-base";
-import { ResourcePool } from "./resource-pool";
+import { Project } from "./resource-pool";
 import { UserElementCell } from "./user-element-cell";
 import { UserElementField } from "./user-element-field";
 import { UserRole } from "./user-role";
@@ -38,7 +38,7 @@ export class User extends EntityBase {
     Claims: any[];
     Logins: any[];
     Roles: UserRole[];
-    ResourcePoolSet: ResourcePool[];
+    ProjectSet: Project[];
     UserElementFieldSet: UserElementField[];
     UserElementCellSet: UserElementCell[];
 
@@ -63,8 +63,8 @@ export class User extends EntityBase {
         userName: ""
     };
 
-    getResourcePoolSetSorted(): ResourcePool[] {
-        return this.ResourcePoolSet.sort((a, b) => {
+    getResourcePoolSetSorted(): Project[] {
+        return this.ProjectSet.sort((a, b) => {
             const nameA = a.Name.toLowerCase();
             const nameB = b.Name.toLowerCase();
             if (nameA < nameB) { return -1 };

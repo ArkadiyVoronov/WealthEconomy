@@ -11,7 +11,7 @@ namespace forCrowd.WealthEconomy.BusinessObjects.Tests
         {
             var user = new User("User", "user@email.com");
 
-            var resourcePool = new ResourcePool(user, "CMRP");
+            var resourcePool = new Project(user, "CMRP");
             
             resourcePool
                 .AddElement("Element")

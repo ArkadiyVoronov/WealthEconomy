@@ -174,7 +174,7 @@ export class ElementField extends EntityBase {
         this.setCurrentUserIndexRating();
 
         // Event handlers
-        this.Element.ResourcePool.ratingModeUpdated.subscribe(() => {
+        this.Element.Project.ratingModeUpdated.subscribe(() => {
             this.setIndexRating();
         });
 
@@ -251,7 +251,7 @@ export class ElementField extends EntityBase {
 
     setIncome() {
 
-        const value = this.Element.ResourcePool.InitialValue * this.indexRatingPercentage();
+        const value = this.Element.Project.InitialValue * this.indexRatingPercentage();
 
         if (this.fields.income !== value) {
             this.fields.income = value;
@@ -267,7 +267,7 @@ export class ElementField extends EntityBase {
 
         let value = 0; // Default value
 
-        switch (this.Element.ResourcePool.RatingMode) {
+        switch (this.Element.Project.RatingMode) {
             case RatingMode.CurrentUser: { value = this.currentUserIndexRating(); break; }
             case RatingMode.AllUsers: { value = this.indexRatingAverage(); break; }
         }
@@ -277,7 +277,7 @@ export class ElementField extends EntityBase {
 
             // Update related
             //this.indexRatingPercentage(); - No need to call this one since element is going to update it anyway! / coni2k - 05 Nov. '17 
-            this.Element.ResourcePool.mainElement().setIndexRating();
+            this.Element.Project.mainElement().setIndexRating();
 
             this.indexRatingUpdated$.emit(this.fields.indexRating);
         }
@@ -285,7 +285,7 @@ export class ElementField extends EntityBase {
 
     setIndexRatingPercentage() {
 
-        const elementIndexRating = this.Element.ResourcePool.mainElement().indexRating();
+        const elementIndexRating = this.Element.Project.mainElement().indexRating();
 
         const value = elementIndexRating === 0 ? 0 : this.indexRating() / elementIndexRating;
 

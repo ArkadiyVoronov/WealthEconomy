@@ -1,6 +1,8 @@
 namespace forCrowd.WealthEconomy.DataObjects.Migrations
 {
+    using System;
     using System.Collections.Generic;
+    using System.Data.Entity.Infrastructure.Annotations;
     using System.Data.Entity.Migrations;
     
     public partial class V_0_80_0 : DbMigration
@@ -12,7 +14,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ResourcePoolId = c.Int(nullable: false),
+                        ProjectId = c.Int(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         IsMainElement = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -21,8 +23,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                         RowVersion = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ResourcePool", t => t.ResourcePoolId, cascadeDelete: true)
-                .Index(t => t.ResourcePoolId);
+                .ForeignKey("dbo.Project", t => t.ProjectId, cascadeDelete: true)
+                .Index(t => t.ProjectId);
             
             CreateTable(
                 "dbo.ElementField",
@@ -33,10 +35,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                         Name = c.String(nullable: false, maxLength: 50),
                         DataType = c.Byte(nullable: false),
                         SelectedElementId = c.Int(),
-                        UseFixedValue = c.Boolean(),
+                        UseFixedValue = c.Boolean(nullable: false),
                         IndexEnabled = c.Boolean(nullable: false),
-                        IndexCalculationType = c.Byte(nullable: false),
-                        IndexSortType = c.Byte(nullable: false),
                         SortOrder = c.Byte(nullable: false),
                         IndexRatingTotal = c.Decimal(nullable: false, precision: 18, scale: 2),
                         IndexRatingCount = c.Int(nullable: false),
@@ -96,10 +96,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                     {
                         UserId = c.Int(nullable: false),
                         ElementCellId = c.Int(nullable: false),
-                        BooleanValue = c.Boolean(),
-                        IntegerValue = c.Int(),
                         DecimalValue = c.Decimal(precision: 18, scale: 2),
-                        DateTimeValue = c.DateTime(),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(nullable: false),
                         DeletedOn = c.DateTime(),
@@ -180,7 +177,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.ResourcePool",
+                "dbo.Project",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -189,9 +186,6 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                         Name = c.String(nullable: false, maxLength: 50),
                         Description = c.String(),
                         InitialValue = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        UseFixedResourcePoolRate = c.Boolean(nullable: false),
-                        ResourcePoolRateTotal = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ResourcePoolRateCount = c.Int(nullable: false),
                         RatingCount = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(nullable: false),
@@ -201,28 +195,6 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
                 .Index(t => new { t.UserId, t.Key }, unique: true, name: "UX_ResourcePool_UserId_Key");
-            
-            CreateTable(
-                "dbo.UserResourcePool",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false),
-                        ResourcePoolId = c.Int(nullable: false),
-                        ResourcePoolRate = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        CreatedOn = c.DateTime(nullable: false),
-                        ModifiedOn = c.DateTime(nullable: false),
-                        DeletedOn = c.DateTime(),
-                        RowVersion = c.Binary(nullable: false, fixedLength: true, timestamp: true, storeType: "rowversion"),
-                    },
-                annotations: new Dictionary<string, object>
-                {
-                    { "UserAnnotation", "UserId" },
-                })
-                .PrimaryKey(t => new { t.UserId, t.ResourcePoolId })
-                .ForeignKey("dbo.ResourcePool", t => t.ResourcePoolId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.UserId)
-                .Index(t => t.UserId)
-                .Index(t => t.ResourcePoolId);
             
             CreateTable(
                 "dbo.UserRole",
@@ -287,10 +259,8 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             DropForeignKey("dbo.UserElementField", "ElementFieldId", "dbo.ElementField");
             DropForeignKey("dbo.UserRole", "UserId", "dbo.User");
             DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
-            DropForeignKey("dbo.UserResourcePool", "UserId", "dbo.User");
-            DropForeignKey("dbo.UserResourcePool", "ResourcePoolId", "dbo.ResourcePool");
-            DropForeignKey("dbo.ResourcePool", "UserId", "dbo.User");
-            DropForeignKey("dbo.Element", "ResourcePoolId", "dbo.ResourcePool");
+            DropForeignKey("dbo.Project", "UserId", "dbo.User");
+            DropForeignKey("dbo.Element", "ProjectId", "dbo.Project");
             DropForeignKey("dbo.UserLogin", "UserId", "dbo.User");
             DropForeignKey("dbo.UserClaim", "UserId", "dbo.User");
             DropForeignKey("dbo.UserElementCell", "ElementCellId", "dbo.ElementCell");
@@ -304,9 +274,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             DropIndex("dbo.Role", "RoleNameIndex");
             DropIndex("dbo.UserRole", new[] { "RoleId" });
             DropIndex("dbo.UserRole", new[] { "UserId" });
-            DropIndex("dbo.UserResourcePool", new[] { "ResourcePoolId" });
-            DropIndex("dbo.UserResourcePool", new[] { "UserId" });
-            DropIndex("dbo.ResourcePool", "UX_ResourcePool_UserId_Key");
+            DropIndex("dbo.Project", "UX_ResourcePool_UserId_Key");
             DropIndex("dbo.UserLogin", new[] { "UserId" });
             DropIndex("dbo.UserClaim", new[] { "UserId" });
             DropIndex("dbo.User", "UserNameIndex");
@@ -317,7 +285,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
             DropIndex("dbo.ElementCell", "UX_ElementCell_ElementFieldId_ElementItemId");
             DropIndex("dbo.ElementField", new[] { "SelectedElementId" });
             DropIndex("dbo.ElementField", new[] { "ElementId" });
-            DropIndex("dbo.Element", new[] { "ResourcePoolId" });
+            DropIndex("dbo.Element", new[] { "ProjectId" });
             DropTable("dbo.UserElementField",
                 removedAnnotations: new Dictionary<string, object>
                 {
@@ -325,12 +293,7 @@ namespace forCrowd.WealthEconomy.DataObjects.Migrations
                 });
             DropTable("dbo.Role");
             DropTable("dbo.UserRole");
-            DropTable("dbo.UserResourcePool",
-                removedAnnotations: new Dictionary<string, object>
-                {
-                    { "UserAnnotation", "UserId" },
-                });
-            DropTable("dbo.ResourcePool");
+            DropTable("dbo.Project");
             DropTable("dbo.UserLogin");
             DropTable("dbo.UserClaim");
             DropTable("dbo.User");

@@ -229,7 +229,7 @@
     <Compile Include="Controllers\OData\ElementFieldController.cs" />
     <Compile Include="Controllers\OData\ElementItemController.cs" />
     <Compile Include="Controllers\OData\BaseODataController.cs" />
-    <Compile Include="Controllers\OData\ResourcePoolController.cs" />
+    <Compile Include="Controllers\OData\ProjectController.cs" />
     <Compile Include="Controllers\OData\RolesController.cs" />
     <Compile Include="Controllers\OData\UsersController.cs" />
     <Compile Include="Controllers\OData\UserElementCellController.cs" />

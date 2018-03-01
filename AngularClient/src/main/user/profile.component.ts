@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { ResourcePool } from "../app-entity-manager/entities/resource-pool";
+import { Project } from "../app-entity-manager/entities/resource-pool";
 import { User } from "../app-entity-manager/entities/user";
 import { UserService } from "./user.service";
 
@@ -12,7 +12,7 @@ import { UserService } from "./user.service";
 export class ProfileComponent implements OnInit {
 
     displayMain: boolean = true;
-    selectedResourcePool: ResourcePool = null;
+    selectedResourcePool: Project = null;
     user: User = null;
 
     constructor(private activatedRoute: ActivatedRoute,
@@ -20,11 +20,11 @@ export class ProfileComponent implements OnInit {
         private userService: UserService) {
     }
 
-    getResourcePoolLink(resourcePool: ResourcePool): string {
+    getResourcePoolLink(resourcePool: Project): string {
         return `/${resourcePool.User.UserName}/${resourcePool.Key}`;
     }
 
-    manageResourcePool(resourcePool: ResourcePool): void {
+    manageResourcePool(resourcePool: Project): void {
         const editLink = this.getResourcePoolLink(resourcePool) + "/edit";
         this.router.navigate([editLink]);
     }
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
             });
     }
 
-    removeResourcePool(resourcePool: ResourcePool): void {
+    removeResourcePool(resourcePool: Project): void {
         resourcePool.remove();
         this.userService.saveChanges().subscribe(() => {
             this.displayMain = true;
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
         this.displayMain = true;
     }
 
-    modal_display(resourcePool: ResourcePool) {
+    modal_display(resourcePool: Project) {
         this.selectedResourcePool = resourcePool;
         this.displayMain = false;
     }

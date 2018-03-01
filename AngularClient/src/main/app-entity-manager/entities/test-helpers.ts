@@ -1,4 +1,4 @@
-﻿import { ResourcePool } from "./resource-pool";
+﻿import { Project } from "./resource-pool";
 import { Element } from "./element";
 import { ElementField, ElementFieldDataType } from "./element-field";
 import { UserElementField } from "./user-element-field";
@@ -8,7 +8,7 @@ import { UserElementCell } from "./user-element-cell";
 
 export class TestHelpers {
 
-    static createElement(resourcePool?: ResourcePool): Element {
+    static createElement(resourcePool?: Project): Element {
 
         if (!resourcePool) {
             resourcePool = TestHelpers.createResourcePool();
@@ -16,7 +16,7 @@ export class TestHelpers {
 
         // Element
         const element = new Element();
-        element.ResourcePool = resourcePool;
+        element.Project = resourcePool;
         element.IsMainElement = true;
         element.ElementFieldSet = [];
         element.ElementItemSet = [];
@@ -129,8 +129,8 @@ export class TestHelpers {
         return elementItem;
     }
 
-    static createResourcePool(): ResourcePool {
-        const resourcePool = new ResourcePool();
+    static createResourcePool(): Project {
+        const resourcePool = new Project();
         resourcePool.ElementSet = [];
         resourcePool.initialize();
         return resourcePool;
