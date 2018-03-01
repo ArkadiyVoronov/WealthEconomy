@@ -3,7 +3,8 @@ import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 
 import { ChartConfig, ChartDataItem } from "../../ng-chart/ng-chart.module";
-import { IProjectViewerConfig, ProjectService } from "../../project-viewer/project-viewer.module";
+import { ProjectService } from "../project.service";
+import { IProjectViewerConfig } from "../../project-viewer/project-viewer.module";
 
 @Component({
     selector: "knowledge-index",

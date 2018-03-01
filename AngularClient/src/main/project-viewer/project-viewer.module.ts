@@ -5,10 +5,9 @@ import { RouterModule } from "@angular/router";
 
 import { NgChartModule } from "../ng-chart/ng-chart.module";
 import { IConfig as IProjectViewerConfig, ProjectViewerComponent } from "./project-viewer.component";
-import { ProjectService } from "./project.service";
 import { SymbolicPipe } from "./symbolic.pipe";
 
-export { IProjectViewerConfig, ProjectService }
+export { IProjectViewerConfig }
 
 @NgModule({
     declarations: [
@@ -25,9 +24,6 @@ export { IProjectViewerConfig, ProjectService }
         RouterModule,
 
         NgChartModule
-    ],
-    providers: [
-        ProjectService
     ]
 })
 export class ProjectViewerModule { }

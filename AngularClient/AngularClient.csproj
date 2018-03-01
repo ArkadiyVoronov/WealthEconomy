@@ -72,7 +72,7 @@
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-cell.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-field.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user.ts" />
-    <TypeScriptCompile Include="src\main\project-viewer\project.service.ts" />
+    <TypeScriptCompile Include="src\main\core\project.service.ts" />
     <TypeScriptCompile Include="src\main\auth\auth.service.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.module.ts" />
     <TypeScriptCompile Include="src\main\logger\logger.service.ts" />

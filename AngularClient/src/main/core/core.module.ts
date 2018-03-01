@@ -27,8 +27,9 @@ import { ProjectViewerModule } from "../project-viewer/project-viewer.module";
 import { CanDeactivateGuard } from "./can-deactivate-guard.service";
 import { DynamicTitleResolve } from "./dynamic-title-resolve.service";
 import { GoogleAnalyticsService } from "./google-analytics.service";
+import { ProjectService } from "./project.service";
 
-export { Angulartics2GoogleAnalytics, CanDeactivateGuard, DynamicTitleResolve }
+export { Angulartics2GoogleAnalytics, CanDeactivateGuard, DynamicTitleResolve, ProjectService }
 
 const coreRoutes: Routes = [
     { path: "", component: HomeComponent, data: { title: "Home" } },
@@ -89,7 +90,8 @@ export function appInitializer(googleAnalyticsService: GoogleAnalyticsService) {
         },
         CanDeactivateGuard,
         DynamicTitleResolve,
-        GoogleAnalyticsService
+        GoogleAnalyticsService,
+        ProjectService
     ]
 })
 export class CoreModule { }

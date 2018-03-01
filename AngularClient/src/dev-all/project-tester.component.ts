@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { RatingMode, Project } from "../main/app-entity-manager/entities/project";
-import { ProjectService } from "../main/project-viewer/project-viewer.module";
+import { ProjectService } from "../main/core/core.module";
 
 @Component({
     selector: "project-tester",
