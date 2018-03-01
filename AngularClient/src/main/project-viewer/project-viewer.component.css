@@ -49,36 +49,36 @@
         padding: 5px;
     }
 
-.resource-pool-table {
+.project-table {
 }
 
-    .resource-pool-table > thead > tr > th {
+    .project-table > thead > tr > th {
         vertical-align: top;
     }
 
-    .resource-pool-table > thead > tr > th,
-    .resource-pool-table > thead > tr > td,
-    .resource-pool-table > tbody > tr > td,
-    .resource-pool-table > tfoot > tr > td {
+    .project-table > thead > tr > th,
+    .project-table > thead > tr > td,
+    .project-table > tbody > tr > td,
+    .project-table > tfoot > tr > td {
         line-height: 2em;
         min-width: 85px;
         overflow: hidden; /* Hide text outside the cell */
         padding: 3px;
     }
 
-    .resource-pool-table .infoText {
+    .project-table .infoText {
         margin-left: 2px;
     }
 
-    .resource-pool-table .incomeStatusLow {
+    .project-table .incomeStatusLow {
         color: #a94442;
     }
 
-    .resource-pool-table .incomeStatusHigh {
+    .project-table .incomeStatusHigh {
         color: #3c763d;
     }
 
-    .resource-pool-table .noborder {
+    .project-table .noborder {
         border: 0;
     }
 
