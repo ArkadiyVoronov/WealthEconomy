@@ -1,8 +1,8 @@
-import "../main/rxjs-extensions";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { MomentModule } from "angular2-moment";
+import "../main/core/rxjs-extensions";
 
 import { AppEntityManagerModule } from "../main/app-entity-manager/app-entity-manager.module";
 import { AppErrorHandlerModule } from "../main/app-error-handler/app-error-handler.module";
