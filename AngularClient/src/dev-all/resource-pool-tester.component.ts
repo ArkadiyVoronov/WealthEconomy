@@ -11,7 +11,7 @@ import { ResourcePoolEditorService } from "../main/resource-pool-editor/resource
 export class ResourcePoolTesterComponent implements OnInit {
 
     RatingMode = RatingMode;
-    resourcePool: Project = null;
+    project: Project = null;
 
     constructor(private resourcePoolEditorService: ResourcePoolEditorService) {
     }
@@ -19,8 +19,8 @@ export class ResourcePoolTesterComponent implements OnInit {
     ngOnInit(): void {
 
         this.resourcePoolEditorService.getResourcePoolExpanded({ resourcePoolKey: "New-CMRP", username: "guest-171101-192722534" })
-            .subscribe(resourcePool => {
-                this.resourcePool = resourcePool;
+            .subscribe(project => {
+                this.project = project;
             });
     }
 }

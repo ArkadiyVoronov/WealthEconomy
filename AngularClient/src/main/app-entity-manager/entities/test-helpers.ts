@@ -8,22 +8,22 @@ import { UserElementCell } from "./user-element-cell";
 
 export class TestHelpers {
 
-    static createElement(resourcePool?: Project): Element {
+    static createElement(project?: Project): Element {
 
-        if (!resourcePool) {
-            resourcePool = TestHelpers.createResourcePool();
+        if (!project) {
+            project = TestHelpers.createResourcePool();
         }
 
         // Element
         const element = new Element();
-        element.Project = resourcePool;
+        element.Project = project;
         element.IsMainElement = true;
         element.ElementFieldSet = [];
         element.ElementItemSet = [];
         element.ParentFieldSet = [];
 
         // Cross relation
-        resourcePool.ElementSet.push(element);
+        project.ElementSet.push(element);
 
         element.initialize();
 
@@ -72,8 +72,8 @@ export class TestHelpers {
     static createElementField(element?: Element, dataType?: ElementFieldDataType, indexRatingTotal?: number, indexRatingCount?: number, userElementFieldRating?: number): ElementField {
 
         if (!element) {
-            const resourcePool = TestHelpers.createResourcePool();
-            element = TestHelpers.createElement(resourcePool);
+            const project = TestHelpers.createResourcePool();
+            element = TestHelpers.createElement(project);
         }
 
         // Element field
@@ -111,8 +111,8 @@ export class TestHelpers {
     static createElementItem(element?: Element): ElementItem {
 
         if (!element) {
-            const resourcePool = TestHelpers.createResourcePool();
-            element = TestHelpers.createElement(resourcePool);
+            const project = TestHelpers.createResourcePool();
+            element = TestHelpers.createElement(project);
         }
 
         // Element item
@@ -130,10 +130,10 @@ export class TestHelpers {
     }
 
     static createResourcePool(): Project {
-        const resourcePool = new Project();
-        resourcePool.ElementSet = [];
-        resourcePool.initialize();
-        return resourcePool;
+        const project = new Project();
+        project.ElementSet = [];
+        project.initialize();
+        return project;
     }
 
     static createUserElementCell(elementCell: ElementCell, decimalValue?: number): UserElementCell {

@@ -28,11 +28,11 @@ export class DynamicTitleResolve implements Resolve<string> {
             };
 
             return this.resourcePoolService.getResourcePoolExpanded(resourcePoolUniqueKey)
-                .map((resourcePool): string => {
+                .map((project): string => {
 
-                    if (resourcePool !== null) {
+                    if (project !== null) {
 
-                        title += resourcePool.User.UserName + " - " + resourcePool.Name;
+                        title += project.User.UserName + " - " + project.Name;
                         if (lastUrl && lastUrl.path === "edit") {
                             title += " - Edit";
                         }

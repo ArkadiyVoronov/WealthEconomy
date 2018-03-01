@@ -42,7 +42,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
         return this.resourcePoolEditorService.isBusy;
     }
     RatingMode = RatingMode;
-    resourcePool: Project = null;
+    project: Project = null;
     resourcePoolKey = "";
     get resourcePoolUniqueKey(): IUniqueKey {
         return { username: this.username, resourcePoolKey: this.resourcePoolKey };
@@ -99,22 +99,22 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
         // Get project
         this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePoolUniqueKey)
-            .subscribe((resourcePool: Project) => {
+            .subscribe((project: Project) => {
 
-                if (!resourcePool) {
+                if (!project) {
                     this.errorMessage = "Invalid project";
                     return;
                 }
 
                 // It returns an array, set the first item in the list
-                this.resourcePool = resourcePool;
+                this.project = project;
 
                 // Rating mode updated event
                 // TODO: Unsubscribe?
-                this.resourcePool.ratingModeUpdated.subscribe(() => this.updateElementItemsSortField());
+                this.project.ratingModeUpdated.subscribe(() => this.updateElementItemsSortField());
 
                 // Selected element
-                this.selectedElement = this.resourcePool.mainElement();
+                this.selectedElement = this.project.mainElement();
 
                 this.loadChartData();
             });
@@ -203,7 +203,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
     }
 
     manageResourcePoolEnabled(): boolean {
-        return this.resourcePool.User === this.currentUser;
+        return this.project.User === this.currentUser;
     }
 
     ngOnDestroy(): void {
@@ -232,7 +232,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
 
         this.subscriptions.push(
             Observable.timer(refreshProject, refreshProject).mergeMap(() => {
-                return this.resourcePoolEditorService.getResourcePoolExpanded(this.resourcePool.uniqueKey, true);
+                return this.resourcePoolEditorService.getResourcePoolExpanded(this.project.uniqueKey, true);
             }).subscribe()
         );
 
@@ -260,7 +260,7 @@ export class ResourcePoolEditorComponent implements OnDestroy, OnInit {
     }
 
     updateElementItemsSortField(): void {
-        this.elementItemsSortField = this.resourcePool.RatingMode === RatingMode.CurrentUser
+        this.elementItemsSortField = this.project.RatingMode === RatingMode.CurrentUser
             ? "name"
             : "income";
     }

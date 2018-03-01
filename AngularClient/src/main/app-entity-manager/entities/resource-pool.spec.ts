@@ -5,39 +5,39 @@ describe("main/app-entity-manager/entities/resource-pool", () => {
 
     it("Key: if not set, should be equal to Name", () => {
 
-        var resourcePool = TestHelpers.createResourcePool();
+        var project = TestHelpers.createResourcePool();
 
-        resourcePool.Name = "name";
+        project.Name = "name";
 
-        expect(resourcePool.Key).toBe("name");
+        expect(project.Key).toBe("name");
     });
 
     it("Key: if set, should stay as it is", () => {
 
-        var resourcePool = TestHelpers.createResourcePool();
+        var project = TestHelpers.createResourcePool();
 
-        resourcePool.Key = "key";
-        resourcePool.Name = "name";
+        project.Key = "key";
+        project.Name = "name";
 
-        expect(resourcePool.Key).toBe("key");
+        expect(project.Key).toBe("key");
     });
 
     it("toggleRatingMode: RatingMode should be 'All Users' after first call", () => {
 
-        var resourcePool = TestHelpers.createResourcePool();
+        var project = TestHelpers.createResourcePool();
 
-        resourcePool.toggleRatingMode();
+        project.toggleRatingMode();
 
-        expect(resourcePool.RatingMode).toBe(RatingMode.AllUsers);
+        expect(project.RatingMode).toBe(RatingMode.AllUsers);
     });
 
     it("toggleRatingMode: RatingMode should be 'Current User' after second call", () => {
 
-        var resourcePool = TestHelpers.createResourcePool();
+        var project = TestHelpers.createResourcePool();
 
-        resourcePool.toggleRatingMode();
-        resourcePool.toggleRatingMode();
+        project.toggleRatingMode();
+        project.toggleRatingMode();
 
-        expect(resourcePool.RatingMode).toBe(RatingMode.CurrentUser);
+        expect(project.RatingMode).toBe(RatingMode.CurrentUser);
     });
 });

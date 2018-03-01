@@ -28,15 +28,15 @@ export class AllInOneComponent {
             && this.syncFlag) {
 
             this.resourcePoolService.getResourcePoolExpanded(this.allInOneConfig.resourcePoolUniqueKey)
-                .subscribe((resourcePool: any): void => {
+                .subscribe((project: any): void => {
 
-                    if (!resourcePool) {
+                    if (!project) {
                         return;
                     }
 
                     // Elements
-                    for (let elementIndex = 0; elementIndex < resourcePool.ElementSet.length; elementIndex++) {
-                        const element = resourcePool.ElementSet[elementIndex];
+                    for (let elementIndex = 0; elementIndex < project.ElementSet.length; elementIndex++) {
+                        const element = project.ElementSet[elementIndex];
                         if (element.Name === elementCell.ElementField.Element.Name) {
 
                             // Element fields

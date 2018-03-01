@@ -160,14 +160,14 @@ export class ResourcePoolEditorService {
                 }
 
                 // Project
-                var resourcePool = response.results[0];
+                var project = response.results[0];
 
                 // Add the record into fetched list
                 if (!fetchedEarlier) {
                     this.fetchedList.push(resourcePoolUniqueKey);
                 }
 
-                return resourcePool;
+                return project;
             });
     }
 
