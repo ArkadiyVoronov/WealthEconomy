@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AppSettings } from "../../app-settings/app-settings";
 import { AccountService } from "./account.service";
 import { Logger } from "../logger/logger.module";
-import { getUniqueUserName, stripInvalidChars } from "../utils";
+import { getUniqueUserName, stripInvalidChars } from "../shared/utils";
 
 @Component({
     selector: "change-username",

@@ -10,7 +10,7 @@ import { Role } from "../app-entity-manager/entities/role";
 import { User } from "../app-entity-manager/entities/user";
 import { UserRole } from "../app-entity-manager/entities/user-role";
 import { Logger } from "../logger/logger.module";
-import { getUniqueUserName } from "../utils";
+import { getUniqueUserName } from "../shared/utils";
 
 @Injectable()
 export class AuthService {

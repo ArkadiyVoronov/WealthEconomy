@@ -5,7 +5,7 @@ import { Subscription } from "rxjs/Subscription";
 import { AppSettings } from "../../app-settings/app-settings";
 import { AccountService } from "./account.service";
 import { Logger } from "../logger/logger.module";
-import { getUniqueEmail, getUniqueUserName, stripInvalidChars } from "../utils";
+import { getUniqueEmail, getUniqueUserName, stripInvalidChars } from "../shared/utils";
 
 @Component({
     selector: "register",

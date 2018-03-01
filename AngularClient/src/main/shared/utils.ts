@@ -7,6 +7,10 @@ export function getUniqueUserName() {
 }
 
 export function getUniqueValue() {
+    return new Date().getTime().toString();
+}
+
+export function getUniqueValueOld() {
     const now = new Date();
     const year = now.getFullYear().toString().substring(2);
     const month = (now.getMonth() + 1).toString();
@@ -27,7 +31,7 @@ export function pad(value: string) {
 export function stripInvalidChars(value: string) {
 
     // Trim, remove special chars and replace space with dash
-    if (value !== null) {
+    if (value) {
         value = value.trim()
             .replace(/[^-\w\s]/gi, "")
             .replace(/\s+/g, "-");

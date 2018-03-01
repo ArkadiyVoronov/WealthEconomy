@@ -3,7 +3,7 @@ import { ResourcePool } from "./resource-pool";
 import { UserElementCell } from "./user-element-cell";
 import { UserElementField } from "./user-element-field";
 import { UserRole } from "./user-role";
-import { stripInvalidChars } from "../../utils";
+import { stripInvalidChars } from "../../shared/utils";
 
 export class User extends EntityBase {
 

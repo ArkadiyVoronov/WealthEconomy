@@ -3,7 +3,7 @@
 import { Element } from "./element";
 import { EntityBase } from "./entity-base";
 import { User } from "./user";
-import { stripInvalidChars } from "../../utils";
+import { stripInvalidChars } from "../../shared/utils";
 
 export interface IUniqueKey {
     username: string;
