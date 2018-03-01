@@ -43,7 +43,6 @@
     <TypeScriptCompile Include="src\main\account\login.component.ts" />
     <TypeScriptCompile Include="src\main\account\register.component.ts" />
     <TypeScriptCompile Include="src\main\account\reset-password.component.ts" />
-    <TypeScriptCompile Include="src\main\account\social-logins.component.ts" />
     <TypeScriptCompile Include="src\main\app-error-handler\app-error-handler.module.ts" />
     <TypeScriptCompile Include="src\main\app-error-handler\app-error-handler.service.ts" />
     <TypeScriptCompile Include="src\main\app-http\app-http.module.ts" />
@@ -152,7 +151,6 @@
     <Content Include="src\main\account\login.component.html" />
     <Content Include="src\main\account\register.component.html" />
     <Content Include="src\main\account\reset-password.component.html" />
-    <Content Include="src\main\account\social-logins.component.html" />
     <Content Include="src\main\app\app.component.html" />
     <Content Include="src\main\core\components\all-in-one.component.html" />
     <Content Include="src\main\core\components\basics.component.html" />
