@@ -1,4 +1,4 @@
-﻿import { Project } from "./resource-pool";
+﻿import { Project } from "./project";
 import { Element } from "./element";
 import { ElementField, ElementFieldDataType } from "./element-field";
 import { UserElementField } from "./user-element-field";

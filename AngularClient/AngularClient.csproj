@@ -66,8 +66,8 @@
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\element.spec.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\element.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\entity-base.ts" />
-    <TypeScriptCompile Include="src\main\app-entity-manager\entities\resource-pool.spec.ts" />
-    <TypeScriptCompile Include="src\main\app-entity-manager\entities\resource-pool.ts" />
+    <TypeScriptCompile Include="src\main\app-entity-manager\entities\project.spec.ts" />
+    <TypeScriptCompile Include="src\main\app-entity-manager\entities\project.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\test-helpers.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-cell.ts" />
     <TypeScriptCompile Include="src\main\app-entity-manager\entities\user-element-field.ts" />

@@ -15,7 +15,7 @@ import { EntityBase } from "./entities/entity-base";
 import { ElementCell } from "./entities/element-cell";
 import { ElementField } from "./entities/element-field";
 import { ElementItem } from "./entities/element-item";
-import { Project } from "./entities/resource-pool";
+import { Project } from "./entities/project";
 import { Role } from "./entities/role";
 import { User } from "./entities/user";
 import { UserElementCell } from "./entities/user-element-cell";

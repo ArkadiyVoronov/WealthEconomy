@@ -3,7 +3,7 @@
 import { EntityBase } from "./entity-base";
 import { Element } from "./element";
 import { ElementCell } from "./element-cell";
-import { RatingMode } from "./resource-pool";
+import { RatingMode } from "./project";
 import { UserElementField } from "./user-element-field";
 
 export enum ElementFieldDataType {

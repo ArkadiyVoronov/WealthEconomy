@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 
 import { AppEntityManager } from "../app-entity-manager/app-entity-manager.module";
-import { IUniqueKey } from "../app-entity-manager/entities/resource-pool";
+import { IUniqueKey } from "../app-entity-manager/entities/project";
 import { ProjectService } from "../project-viewer/project-viewer.module";
 
 @Injectable()

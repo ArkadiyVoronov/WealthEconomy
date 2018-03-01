@@ -1,5 +1,5 @@
 ﻿import { EntityBase } from "./entity-base";
-import { Project } from "./resource-pool";
+import { Project } from "./project";
 import { ElementField, ElementFieldDataType } from "./element-field";
 import { ElementItem } from "./element-item";
 

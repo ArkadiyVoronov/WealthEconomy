@@ -1,5 +1,5 @@
 ﻿import { ElementFieldDataType } from "./element-field";
-import { RatingMode } from "./resource-pool";
+import { RatingMode } from "./project";
 import { TestHelpers } from "./test-helpers";
 
 // TODO: Check all these tests below one more time

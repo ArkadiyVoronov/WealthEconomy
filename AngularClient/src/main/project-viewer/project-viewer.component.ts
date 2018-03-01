@@ -8,7 +8,7 @@ import { Options } from "highcharts";
 import { Element } from "../app-entity-manager/entities/element";
 import { ElementCell } from "../app-entity-manager/entities/element-cell";
 import { ElementField, ElementFieldDataType } from "../app-entity-manager/entities/element-field";
-import { IUniqueKey, RatingMode, Project } from "../app-entity-manager/entities/resource-pool";
+import { IUniqueKey, RatingMode, Project } from "../app-entity-manager/entities/project";
 import { User } from "../app-entity-manager/entities/user";
 import { ChartConfig, ChartDataItem } from "../ng-chart/ng-chart.module";
 import { ProjectService } from "./project.service";

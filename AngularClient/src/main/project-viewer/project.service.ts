@@ -9,7 +9,7 @@ import { Element } from "../app-entity-manager/entities/element";
 import { ElementCell } from "../app-entity-manager/entities/element-cell";
 import { ElementField, ElementFieldDataType } from "../app-entity-manager/entities/element-field";
 import { ElementItem } from "../app-entity-manager/entities/element-item";
-import { IUniqueKey, Project } from "../app-entity-manager/entities/resource-pool";
+import { IUniqueKey, Project } from "../app-entity-manager/entities/project";
 import { User } from "../app-entity-manager/entities/user";
 import { UserElementCell } from "../app-entity-manager/entities/user-element-cell";
 import { UserElementField } from "../app-entity-manager/entities/user-element-field";

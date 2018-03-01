@@ -1,4 +1,4 @@
-﻿import { RatingMode } from "./resource-pool";
+﻿import { RatingMode } from "./project";
 import { TestHelpers } from "./test-helpers";
 
 describe("main/app-entity-manager/entities/resource-pool", () => {
